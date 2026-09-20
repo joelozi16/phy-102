@@ -1,1116 +1,662 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHY 102 — General Physics II | Learning & Examination Quiz</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PHY 102 Question Bank</title>
 <style>
 :root{
-  --navy:#0a192f;--navy2:#112240;--navy3:#1d3a5f;
-  --electric:#3b82f6;--electric2:#60a5fa;--cyan:#22d3ee;--cyand:#0e7490;
-  --white:#ffffff;--fog:#f1f5f9;--gray:#64748b;
-  --green:#10b981;--red:#ef4444;--amber:#f59e0b;
-  --shadow:0 10px 30px rgba(2,12,27,0.12);--radius:16px;--radius-sm:10px;
+  --paper:#f3f6fb; --sheet:#ffffff; --ink:#18244f; --mute:#5b6690; --rule:#d5def0;
+  --margin:#e58b8d; --pen:#2b45b8; --pen-bg:#e6ecfb; --ok:#17703f; --ok-bg:#dff3e7;
+  --bad:#a92b25; --bad-bg:#fbe5e3; --focus:#2b45b8;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--fog);color:#0f172a;line-height:1.6;}
-a{color:inherit;text-decoration:none;}
-button{font-family:inherit;cursor:pointer;border:none;background:none;}
-button:focus-visible,a:focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:6px;}
-.hidden{display:none!important;}
-
-header{position:sticky;top:0;z-index:100;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;box-shadow:0 4px 20px rgba(2,12,27,.35);}
-.header-inner{max-width:1280px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
-.brand{display:flex;align-items:center;gap:12px;}
-.brand-logo{width:46px;height:46px;border-radius:12px;flex-shrink:0;background:linear-gradient(135deg,var(--electric),var(--cyan));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;box-shadow:0 4px 14px rgba(59,130,246,.5);}
-.brand h1{font-size:1.25rem;line-height:1.1;}
-.brand p{font-size:.78rem;color:#a5c8ff;font-weight:500;}
-nav{display:flex;gap:6px;flex-wrap:wrap;}
-nav button{color:#cfe0ff;padding:9px 15px;border-radius:9px;font-weight:600;font-size:.9rem;transition:.2s;}
-nav button:hover{background:rgba(255,255,255,.1);color:#fff;}
-nav button.active{background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;box-shadow:0 4px 12px rgba(59,130,246,.4);}
-.menu-toggle{display:none;color:#fff;font-size:1.5rem;padding:4px 10px;}
-
-.main{max-width:1280px;margin:0 auto;padding:24px 20px 60px;}
-.section{display:none;animation:fadeIn .4s ease;}
-.section.active{display:block;}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
-
-.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,var(--navy3) 100%);color:#fff;border-radius:24px;padding:60px 40px;text-align:center;position:relative;overflow:hidden;box-shadow:var(--shadow);}
-.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;}
-.hero::before{width:300px;height:300px;background:var(--electric);top:-80px;right:-60px;}
-.hero::after{width:260px;height:260px;background:var(--cyan);bottom:-90px;left:-50px;}
-.hero-cont{position:relative;z-index:2;}
-.hero .badge{background:rgba(34,211,238,.15);color:var(--cyan);border:1px solid rgba(34,211,238,.4);padding:6px 16px;border-radius:30px;font-size:.8rem;font-weight:700;letter-spacing:1px;display:inline-block;margin-bottom:18px;}
-.hero h2{font-size:clamp(2rem,5vw,3.4rem);line-height:1.1;margin-bottom:16px;font-weight:800;}
-.hero h2 span{background:linear-gradient(90deg,var(--electric2),var(--cyan));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.hero p{max-width:640px;margin:0 auto 30px;color:#cfe0ff;font-size:1.1rem;}
-.hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-.btn{padding:14px 28px;border-radius:12px;font-weight:700;font-size:1rem;transition:.25s;display:inline-flex;align-items:center;gap:8px;}
-.btn-primary{background:linear-gradient(135deg,var(--electric),var(--cyan));color:#fff;box-shadow:0 6px 18px rgba(34,211,238,.35);}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(34,211,238,.5);}
-.btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.3);}
-.btn-ghost:hover{background:rgba(255,255,255,.2);}
-.btn-outline{background:transparent;color:var(--electric);border:2px solid var(--electric);}
-.btn-outline:hover{background:var(--electric);color:#fff;}
-.btn-dark{background:var(--navy);color:#fff;}
-.btn-dark:hover{background:var(--navy2);}
-.btn-sm{padding:9px 16px;font-size:.85rem;border-radius:9px;}
-.btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important;}
-
-.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;margin-bottom:20px;}
-.card-title{font-size:1.4rem;font-weight:800;color:var(--navy);margin-bottom:6px;display:flex;align-items:center;gap:10px;}
-.card-sub{color:var(--gray);font-size:.95rem;margin-bottom:18px;}
-.grid{display:grid;gap:16px;}
-.grid-2{grid-template-columns:repeat(2,1fr);}
-.grid-3{grid-template-columns:repeat(3,1fr);}
-.grid-4{grid-template-columns:repeat(4,1fr);}
-
-.cat-card{background:#fff;border-radius:var(--radius);padding:22px;cursor:pointer;transition:.25s;border:2px solid #e2e8f0;box-shadow:0 4px 12px rgba(2,12,27,.05);position:relative;overflow:hidden;}
-.cat-card:hover{transform:translateY(-4px);border-color:var(--electric);box-shadow:0 12px 28px rgba(59,130,246,.18);}
-.cat-card.selected{border-color:var(--electric);background:linear-gradient(135deg,#eff6ff,#f0fdfa);}
-.cat-card .icon{width:52px;height:52px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:12px;background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(34,211,238,.15));}
-.cat-card h3{font-size:1.02rem;color:var(--navy);margin-bottom:4px;}
-.cat-card p{font-size:.8rem;color:var(--gray);}
-.cat-card .count{position:absolute;top:14px;right:14px;background:#eff6ff;color:var(--electric);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:20px;}
-
-.seg-label{font-weight:700;color:var(--navy);margin:18px 0 10px;font-size:1rem;display:flex;align-items:center;gap:8px;}
-.seg-label .step{background:var(--electric);color:#fff;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.8rem;}
-.seg{display:flex;gap:10px;flex-wrap:wrap;}
-.seg button{padding:10px 18px;border-radius:10px;font-weight:600;font-size:.9rem;border:2px solid #e2e8f0;background:#fff;color:#334155;transition:.2s;}
-.seg button:hover{border-color:var(--electric);color:var(--electric);}
-.seg button.selected{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 4px 12px rgba(10,25,47,.3);}
-
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:20px;}
-.stat{background:#fff;border-radius:14px;padding:18px;box-shadow:var(--shadow);text-align:center;}
-.stat .num{font-size:1.9rem;font-weight:800;color:var(--navy);}
-.stat .lbl{color:var(--gray);font-size:.8rem;font-weight:600;margin-top:2px;text-transform:uppercase;letter-spacing:.5px;}
-.stat.accent .num{color:var(--electric);}
-.progress-bar{background:#e2e8f0;border-radius:30px;height:16px;overflow:hidden;margin-top:8px;}
-.progress-fill{height:100%;background:linear-gradient(90deg,var(--electric),var(--cyan));border-radius:30px;transition:width 1s ease;}
-.progress-fill.green{background:linear-gradient(90deg,var(--green),#34d399);}
-
-.formula-card{background:#0f172a;color:#e2e8f0;border-radius:14px;padding:20px;border-left:5px solid var(--cyan);}
-.formula-card h4{color:var(--cyan);margin-bottom:8px;font-size:1.05rem;}
-.formula-code{font-family:'Cambria Math','Times New Roman',serif;font-size:1.35rem;color:#fff;background:rgba(255,255,255,.06);padding:8px 14px;border-radius:8px;display:inline-block;margin:6px 0;}
-.formula-card p{font-size:.88rem;color:#cbd5e1;}
-
-.def-card{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);border-top:4px solid var(--electric);}
-.def-card h4{color:var(--navy);font-size:1.05rem;margin-bottom:6px;}
-.def-card p{color:#475569;font-size:.92rem;}
-
-.quiz-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--navy);color:#fff;border-radius:14px;padding:14px 18px;margin-bottom:16px;position:sticky;top:74px;z-index:50;box-shadow:0 6px 18px rgba(10,25,47,.3);}
-.quiz-topbar .info{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-.timer{font-weight:800;color:var(--cyan);font-size:1.1rem;background:rgba(34,211,238,.12);padding:6px 14px;border-radius:9px;}
-.timer.warn{color:#fbbf24;background:rgba(245,158,11,.15);animation:pulse 1s infinite;}
-@keyframes pulse{50%{opacity:.5;}}
-.qnum-badge{font-weight:700;background:rgba(255,255,255,.12);padding:6px 14px;border-radius:9px;}
-.mode-badge{padding:6px 14px;border-radius:9px;font-weight:700;font-size:.8rem;}
-.mode-badge.learning{background:rgba(16,185,129,.2);color:#6ee7b7;}
-.mode-badge.exam{background:rgba(239,68,68,.2);color:#fca5a5;}
-
-.palette{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;background:#fff;border-radius:14px;padding:14px;box-shadow:var(--shadow);}
-.pal-num{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;background:#eef2f7;color:#334155;cursor:pointer;transition:.15s;border:2px solid transparent;}
-.pal-num:hover{background:#e2e8f0;}
-.pal-num.cur{border-color:var(--electric);color:var(--electric);background:#eff6ff;}
-.pal-num.answered{background:var(--green);color:#fff;}
-.pal-num.marked{background:var(--amber);color:#fff;}
-.pal-num.answered.marked{background:linear-gradient(135deg,var(--green),var(--amber));}
-.pal-legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.78rem;color:var(--gray);font-weight:600;margin-left:auto;align-items:center;}
-.legend-dot{width:12px;height:12px;border-radius:4px;display:inline-block;vertical-align:middle;margin-right:4px;}
-
-.question-card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;animation:fadeIn .3s ease;}
-.q-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
-.q-tag{font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:.4px;}
-.q-tag.category{background:#eff6ff;color:var(--electric);}
-.q-tag.easy{background:#ecfdf5;color:#059669;}
-.q-tag.medium{background:#fffbeb;color:#b45309;}
-.q-tag.hard{background:#fef2f2;color:#b91c1c;}
-.q-tag.type{background:#f5f3ff;color:#7c3aed;}
-.question-text{font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:20px;line-height:1.5;}
-.opt-list{display:flex;flex-direction:column;gap:12px;}
-.opt{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;border:2px solid #e2e8f0;border-radius:12px;cursor:pointer;transition:.2s;font-size:1rem;background:#fff;}
-.opt:hover{border-color:var(--electric);background:#f8faff;}
-.opt .letter{width:34px;height:34px;border-radius:9px;background:#eef2f7;color:#334155;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.9rem;}
-.opt.selected{border-color:var(--electric);background:#eff6ff;}
-.opt.selected .letter{background:var(--electric);color:#fff;}
-.opt.correct{border-color:var(--green);background:#ecfdf5;}
-.opt.correct .letter{background:var(--green);color:#fff;}
-.opt.wrong{border-color:var(--red);background:#fef2f2;}
-.opt.wrong .letter{background:var(--red);color:#fff;}
-
-.feedback{margin-top:20px;border-radius:12px;padding:18px;border-left:5px solid;}
-.feedback.correct{background:#ecfdf5;border-color:var(--green);}
-.feedback.wrong{background:#fef2f2;border-color:var(--red);}
-.feedback h4{font-size:1.05rem;margin-bottom:8px;}
-.feedback.correct h4{color:#059669;}
-.feedback.wrong h4{color:#b91c1c;}
-.feedback p{font-size:.95rem;color:#334155;margin-bottom:6px;}
-.feedback .f-formula{background:#0f172a;color:#7dd3fc;padding:8px 14px;border-radius:8px;font-family:'Cambria Math',serif;font-size:1.1rem;display:inline-block;margin:6px 0;}
-.feedback .note{background:rgba(255,255,255,.7);border-radius:8px;padding:10px 12px;font-size:.88rem;color:#475569;border:1px dashed #cbd5e1;}
-
-.q-actions{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-top:24px;}
-.q-actions .left,.q-actions .right{display:flex;gap:10px;flex-wrap:wrap;}
-.mark-btn{background:#fffbeb;color:#b45309;border:2px solid #fbbf24;font-weight:700;}
-.mark-btn.marked{background:var(--amber);color:#fff;}
-
-.result-hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:22px;padding:36px;text-align:center;box-shadow:var(--shadow);margin-bottom:20px;}
-.result-score-wrap{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;}
-.score-ring{width:150px;height:150px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;background:conic-gradient(var(--cyan) var(--pct,0%),rgba(255,255,255,.12) 0);position:relative;}
-.score-ring::before{content:"";position:absolute;inset:12px;border-radius:50%;background:var(--navy2);}
-.score-ring .inner{position:relative;z-index:2;text-align:center;}
-.score-ring .pct{font-size:2.2rem;font-weight:800;color:var(--cyan);}
-.score-ring .sc{font-size:.85rem;color:#cfe0ff;}
-.result-level{font-size:1.4rem;font-weight:800;margin:10px 0 4px;}
-.result-level.excellent{color:#6ee7b7;}
-.result-level.verygood{color:#7dd3fc;}
-.result-level.good{color:#fcd34d;}
-.result-level.needs{color:#fda4af;}
-.result-level.practice{color:#fca5a5;}
-.result-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:20px;}
-.result-stats .rs{background:rgba(255,255,255,.07);border-radius:12px;padding:14px 10px;}
-.result-stats .rs .n{font-size:1.5rem;font-weight:800;}
-.result-stats .rs .l{font-size:.72rem;color:#a5c8ff;text-transform:uppercase;letter-spacing:.5px;}
-.review-item{border-radius:14px;padding:20px;border:2px solid #e2e8f0;margin-bottom:14px;background:#fff;}
-.review-item.correct{border-left:6px solid var(--green);}
-.review-item.incorrect{border-left:6px solid var(--red);}
-.review-item.unanswered{border-left:6px solid var(--gray);}
-.review-item h4{color:var(--navy);margin-bottom:10px;}
-.review-answer{font-size:.9rem;margin:4px 0;padding:8px 12px;border-radius:8px;}
-.review-answer.student.correct{background:#ecfdf5;color:#065f46;}
-.review-answer.student.wrong{background:#fef2f2;color:#991b1b;}
-.review-answer.correct-ans{background:#eff6ff;color:#1e40af;}
-.review-formula{background:#0f172a;color:#7dd3fc;padding:8px 14px;border-radius:8px;display:inline-block;margin:6px 0;font-family:'Cambria Math',serif;}
-
-table{width:100%;border-collapse:collapse;font-size:.9rem;}
-th,td{padding:12px;text-align:left;border-bottom:1px solid #e2e8f0;}
-th{background:var(--navy);color:#fff;font-weight:700;}
-tr:nth-child(even){background:#f8fafc;}
-
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120%);background:var(--navy);color:#fff;padding:14px 24px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.3);z-index:200;transition:.35s;font-weight:600;max-width:90%;text-align:center;}
-.toast.show{transform:translateX(-50%) translateY(0);}
-
-.modal-overlay{position:fixed;inset:0;background:rgba(10,25,47,.7);backdrop-filter:blur(3px);z-index:150;display:flex;align-items:center;justify-content:center;padding:20px;}
-.modal{background:#fff;border-radius:18px;max-width:460px;width:100%;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.4);animation:fadeIn .25s ease;}
-.modal h3{color:var(--navy);margin-bottom:10px;}
-.modal p{color:#475569;margin-bottom:18px;}
-.modal-actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;}
-
-@media(max-width:900px){.grid-4{grid-template-columns:repeat(2,1fr);}.grid-3{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:640px){
-  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}
-  .header-inner{padding:12px 14px;}
-  nav{position:fixed;top:0;right:0;height:100vh;width:min(280px,80vw);background:var(--navy2);flex-direction:column;padding:70px 20px 20px;transform:translateX(100%);transition:.3s;box-shadow:-10px 0 30px rgba(0,0,0,.3);z-index:90;}
-  nav.open{transform:translateX(0);}
-  nav button{text-align:left;padding:13px 15px;font-size:1rem;}
-  .menu-toggle{display:block;z-index:100;}
-  .hero{padding:44px 22px;}
-  .quiz-topbar{top:64px;padding:12px;}
-  .question-card{padding:20px;}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#10141f; --sheet:#181e2d; --ink:#dfe6ff; --mute:#9aa6d0; --rule:#2a3350;
+    --margin:#8a4a55; --pen:#8fa6ff; --pen-bg:#222c52; --ok:#6fd39a; --ok-bg:#153524;
+    --bad:#ff9a92; --bad-bg:#3d1c1f; --focus:#8fa6ff;
+  }
 }
-@media(max-width:400px){.pal-num{width:34px;height:34px;}}
+:root[data-theme="dark"]{
+  --paper:#10141f; --sheet:#181e2d; --ink:#dfe6ff; --mute:#9aa6d0; --rule:#2a3350;
+  --margin:#8a4a55; --pen:#8fa6ff; --pen-bg:#222c52; --ok:#6fd39a; --ok-bg:#153524;
+  --bad:#ff9a92; --bad-bg:#3d1c1f; --focus:#8fa6ff;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+h1{font:700 26px/1.2 Georgia,"Iowan Old Style","Times New Roman",serif;margin:8px 0 4px;letter-spacing:-.01em}
+h2{font:600 16px/1.3 system-ui,sans-serif;margin:0 0 12px}
+h3{font:700 18px/1.3 Georgia,serif;margin:28px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--pen)}
+.sub{margin:0 0 20px;color:var(--mute)}
+.card{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;padding:16px;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:14px;padding:7px 12px;border-radius:999px;border:1px solid var(--rule);
+  background:transparent;color:var(--ink);cursor:pointer}
+.chip span{color:var(--mute);margin-left:4px;font-size:12px}
+.chip.on{background:var(--pen-bg);border-color:var(--pen);color:var(--pen)}
+.chip.on span{color:var(--pen)}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.mute{color:var(--mute);font-size:14px;margin:12px 0 0}
+.btn{font:inherit;font-weight:600;padding:11px 18px;border-radius:8px;border:1px solid var(--pen);
+  background:var(--pen);color:#fff;cursor:pointer}
+:root[data-theme="dark"] .btn{color:#10141f}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .btn{color:#10141f}}
+.btn.ghost{background:transparent;color:var(--pen)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.link{font:inherit;font-size:14px;background:none;border:0;color:var(--pen);cursor:pointer;padding:4px 2px;text-decoration:underline}
+button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+
+/* exercise-book page */
+.page{position:relative;background:
+  repeating-linear-gradient(to bottom,transparent 0,transparent 27px,var(--rule) 27px,var(--rule) 28px),var(--sheet);
+  border:1px solid var(--rule);border-radius:10px;padding:14px 16px 16px 44px;margin-bottom:14px}
+.page::before{content:"";position:absolute;left:30px;top:0;bottom:0;width:2px;background:var(--margin);opacity:.7}
+.meta{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:var(--mute);margin-bottom:6px;flex-wrap:wrap}
+.bar{height:5px;background:var(--rule);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.bar i{display:block;height:100%;background:var(--pen)}
+.q{font:500 19px/28px Georgia,"Iowan Old Style","Times New Roman",serif;margin:0 0 14px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;font:inherit;padding:11px 12px;
+  border-radius:8px;border:1px solid var(--rule);background:var(--sheet);color:var(--ink);cursor:pointer;width:100%}
+.opt b{flex:0 0 26px;height:26px;border-radius:50%;border:1.5px solid var(--pen);color:var(--pen);
+  display:grid;place-items:center;font-size:13px;line-height:1}
+.opt:hover:not(:disabled){border-color:var(--pen)}
+.opt:disabled{cursor:default}
+.opt.ok{background:var(--ok-bg);border-color:var(--ok)}
+.opt.ok b{background:var(--ok);border-color:var(--ok);color:var(--sheet)}
+.opt.no{background:var(--bad-bg);border-color:var(--bad)}
+.opt.no b{background:var(--bad);border-color:var(--bad);color:var(--sheet)}
+.opt.dim{opacity:.6}
+.fb{margin-top:14px;padding:10px 12px;border-radius:8px;background:var(--pen-bg);font-size:15px}
+.fb strong{display:block;margin-bottom:2px}
+.score{font:700 44px/1.1 Georgia,serif;margin:4px 0}
+.miss{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.miss li{padding:10px 12px;border:1px solid var(--rule);border-radius:8px;background:var(--sheet)}
+.miss small{display:block;color:var(--mute);margin-top:4px}
+.ans{color:var(--ok);font-weight:600}
+.bq{margin:0 0 18px}
+.bq p{margin:0 0 6px;font:500 17px/1.45 Georgia,serif}
+.bq ol{list-style:upper-alpha;margin:0;padding-left:28px}
+.bq li{padding:2px 0}
+.bq li.ok{color:var(--ok);font-weight:600}
+.bq em{display:block;color:var(--mute);font-size:14px;margin:4px 0 0 0}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+@media print{.top .btn,.top .link,.row{display:none}body{background:#fff;color:#000}.card{border:0}}
 </style>
 </head>
 <body>
-
-<header>
-  <div class="header-inner">
-    <div class="brand">
-      <div class="brand-logo">PHY<br>102</div>
-      <div><h1>PHY 102 — General Physics II</h1><p>Electromagnetism and Fundamental Physics</p></div>
-    </div>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">&#9776;</button>
-    <nav id="navMenu">
-      <button data-view="dashboard" class="active">Dashboard</button>
-      <button data-view="study">Study</button>
-      <button data-view="quiz">Quiz</button>
-      <button data-view="results">Results</button>
-      <button data-view="progress">Progress</button>
-    </nav>
-  </div>
-</header>
-
-<div class="main">
-
-  <section class="section active" id="view-dashboard">
-    <div class="hero">
-      <div class="hero-cont">
-        <span class="badge">100-LEVEL UNIVERSITY PREPARATION</span>
-        <h2>Master <span>PHY 102</span></h2>
-        <p>"Learn the concepts. Practice the questions. Understand the formulas. Prepare for your examination."</p>
-        <div class="hero-actions">
-          <button class="btn btn-primary" onclick="goTo('study')">&#128218; Start Learning</button>
-          <button class="btn btn-ghost" onclick="goTo('quiz')">&#128203; Start Quiz</button>
-        </div>
-      </div>
-    </div>
-    <div style="margin-top:24px;">
-      <div class="card">
-        <h3 class="card-title">&#128202; PHY 102 Learning Progress</h3>
-        <p class="card-sub">Your saved progress from previous attempts.</p>
-        <div class="stats-grid" id="dashStats"></div>
-        <div style="margin-top:8px;">
-          <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:6px;">
-            <strong style="color:var(--navy)">Overall Progress</strong>
-            <strong style="color:var(--electric)"><span id="dashOverallPct">0%</span></strong>
-          </div>
-          <div class="progress-bar"><div class="progress-fill" id="dashBar" style="width:0%"></div></div>
-        </div>
-      </div>
-      <div class="card">
-        <h3 class="card-title">&#128218; Study Before You Quiz</h3>
-        <p class="card-sub">Review the key formulas and definitions from your PHY 102 note.</p>
-        <div class="grid grid-2">
-          <button class="btn btn-outline" onclick="goTo('study')">&#128161; Open Study Mode</button>
-          <button class="btn btn-dark" onclick="goTo('quiz')">&#128221; Take a Quiz</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="view-study">
-    <h2 class="card-title" style="font-size:1.8rem;">&#128218; Study Mode</h2>
-    <p class="card-sub" style="margin-bottom:20px;">Important formulas, symbols, units, and definitions from the PHY 102 note.</p>
-    <h3 class="seg-label">Important Formulas</h3>
-    <div class="grid grid-2" id="formulasList"></div>
-    <h3 class="seg-label" style="margin-top:30px;">Important Definitions</h3>
-    <div class="grid grid-3" id="defsList"></div>
-  </section>
-
-  <section class="section" id="view-quiz">
-    <h2 class="card-title" style="font-size:1.8rem;">&#128203; Quiz Setup</h2>
-    <p class="card-sub">Choose a category, difficulty, and number of questions to begin.</p>
-    <div class="card">
-      <h3 class="seg-label"><span class="step">1</span> Select Category</h3>
-      <div class="grid grid-3" id="categoryGrid"></div>
-      <h3 class="seg-label"><span class="step">2</span> Select Difficulty</h3>
-      <div class="seg" id="diffSeg"></div>
-      <h3 class="seg-label"><span class="step">3</span> Select Question Count</h3>
-      <div class="seg" id="countSeg"></div>
-      <h3 class="seg-label"><span class="step">4</span> Select Mode</h3>
-      <div class="seg" id="modeSeg">
-        <button data-mode="learning" class="selected">&#128218; Learning Mode</button>
-        <button data-mode="exam">&#9201; Exam Mode</button>
-      </div>
-      <div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;">
-        <button class="btn btn-primary" onclick="startQuiz()" style="font-size:1.05rem;padding:15px 34px;">&#9654; Start Quiz</button>
-        <button class="btn btn-outline" onclick="resetSetup()">Reset</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="view-quizactive">
-    <div class="quiz-topbar" id="quizTopbar">
-      <div class="info">
-        <span class="qnum-badge" id="qnumBadge">Question 1 / 10</span>
-        <span class="mode-badge learning" id="modeBadge">LEARNING</span>
-        <span class="timer hidden" id="timer">&#9201; 00:00</span>
-      </div>
-      <div class="info">
-        <span id="progressText" style="font-size:.85rem;color:#a5c8ff;">0 answered</span>
-        <button class="btn btn-sm btn-primary" onclick="submitExam()" id="submitBtn">Submit Exam</button>
-      </div>
-    </div>
-    <div class="palette" id="palette"></div>
-    <div class="question-card" id="questionCard"></div>
-    <div class="q-actions">
-      <div class="left">
-        <button class="btn btn-sm" onclick="markForReview()" id="markBtn" style="background:#fffbeb;color:#b45309;border:2px solid #fbbf24;">&#9873; Mark for Review</button>
-      </div>
-      <div class="right">
-        <button class="btn btn-dark" onclick="prevQuestion()" id="prevBtn">&#8592; Previous</button>
-        <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn">Next &#8594;</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="view-results">
-    <div id="resultsContent"></div>
-  </section>
-
-  <section class="section" id="view-review">
-    <h2 class="card-title" style="font-size:1.8rem;">&#128269; Review Answers</h2>
-    <p class="card-sub">Detailed review of every question from your last attempt.</p>
-    <div id="reviewContent"></div>
-    <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;">
-      <button class="btn btn-primary" onclick="goTo('quiz')">&#128203; New Quiz</button>
-      <button class="btn btn-dark" onclick="goTo('dashboard')">&#127968; Dashboard</button>
-    </div>
-  </section>
-
-  <section class="section" id="view-progress">
-    <h2 class="card-title" style="font-size:1.8rem;">&#128202; Progress & Statistics</h2>
-    <p class="card-sub">Your learning history, saved locally on this device.</p>
-    <div id="progressContent"></div>
-    <div style="margin-top:20px;">
-      <button class="btn btn-outline" onclick="confirmResetProgress()" style="border-color:var(--red);color:var(--red);">&#128465; Reset All Progress</button>
-    </div>
-  </section>
-
+<div class="wrap">
+  <h1>PHY 102 Question Bank</h1>
+  <p class="sub" id="sub"></p>
+  <main id="app"></main>
 </div>
-
-<div class="toast" id="toast"></div>
-<div class="modal-overlay hidden" id="modalOverlay">
-  <div class="modal">
-    <h3 id="modalTitle">Confirm</h3>
-    <p id="modalMsg"></p>
-    <div class="modal-actions">
-      <button class="btn btn-dark" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-primary" id="modalConfirmBtn">Confirm</button>
-    </div>
-  </div>
-</div>
-
 <script>
-const QUESTION_BANK = [
-  // ===== FORCES IN NATURE =====
-  {id:1,category:"Forces in Nature",difficulty:"easy",type:"mcq",question:"How many fundamental forces of nature are there?",options:["Two","Three","Four","Five"],answer:2,explanation:"The note identifies four fundamental forces of nature: gravity, the weak force, the electromagnetic force, and the strong nuclear force.",formula:""},
-  {id:2,category:"Forces in Nature",difficulty:"easy",type:"mcq",question:"Which of the following is NOT one of the four fundamental forces?",options:["Gravity","Electromagnetism","Friction","Strong nuclear force"],answer:2,explanation:"Friction is not a fundamental force; it is a consequence of the electromagnetic force acting between surfaces.",formula:""},
-  {id:3,category:"Forces in Nature",difficulty:"easy",type:"mcq",question:"Who was the first to propose the idea of gravity?",options:["Albert Einstein","Isaac Newton","Charles Coulomb","Michael Faraday"],answer:1,explanation:"Isaac Newton first proposed the idea of gravity as a universal attraction between objects bearing mass or energy.",formula:""},
-  {id:4,category:"Forces in Nature",difficulty:"medium",type:"mcq",question:"Gravity is described as an attraction between two objects that have:",options:["Only mass","Mass or energy","Only energy","Electric charge"],answer:1,explanation:"Gravity is an attraction between any two objects that possess mass or energy.",formula:""},
-  {id:5,category:"Forces in Nature",difficulty:"medium",type:"mcq",question:"Which fundamental force is responsible for particle decay?",options:["Gravity","Electromagnetic force","Weak force","Strong force"],answer:2,explanation:"The weak force is responsible for particle decay, including certain kinds of radioactive decay.",formula:""},
-  {id:6,category:"Forces in Nature",difficulty:"hard",type:"mcq",question:"The weak force is critical for which reaction that powers the sun?",options:["Nuclear fission","Nuclear fusion","Combustion","Chemical reaction"],answer:1,explanation:"The weak force plays a critical role in nuclear fusion, the reaction that powers the sun.",formula:""},
-  {id:7,category:"Forces in Nature",difficulty:"easy",type:"mcq",question:"The electromagnetic force is also called the:",options:["Newton force","Lorentz force","Coulomb force","Tesla force"],answer:1,explanation:"The electromagnetic force is also referred to as the Lorentz force.",formula:""},
-  {id:8,category:"Forces in Nature",difficulty:"medium",type:"mcq",question:"According to the note, opposite charges _______, while like charges _______.",options:["repel, attract","attract, repel","neutralize, repel","attract, neutralize"],answer:1,explanation:"Like charges repel one another while unlike (opposite) charges attract one another.",formula:""},
-  {id:9,category:"Forces in Nature",difficulty:"medium",type:"mcq",question:"The electromagnetic force consists of two parts. They are:",options:["Electric force and gravitational force","Electric force and magnetic force","Magnetic force and weak force","Static force and current force"],answer:1,explanation:"The electromagnetic force has an electric force component and a magnetic force component.",formula:""},
-  {id:10,category:"Forces in Nature",difficulty:"medium",type:"mcq",question:"Which component of the electromagnetic force acts between charged particles whether they are moving or stationary?",options:["Magnetic force","Electric force","Gravitational force","Nuclear force"],answer:1,explanation:"The electric force acts between charged particles regardless of whether they are moving or stationary.",formula:""},
-  {id:11,category:"Forces in Nature",difficulty:"easy",type:"mcq",question:"The force that keeps a book resting on a table (instead of falling through) is a consequence of:",options:["Gravity","The strong nuclear force","The electromagnetic force","The weak force"],answer:2,explanation:"The resistance that keeps a book on a table arises from the electromagnetic force between atoms.",formula:""},
-  {id:12,category:"Forces in Nature",difficulty:"easy",type:"mcq",question:"Which is the strongest of the four fundamental forces?",options:["Gravity","Electromagnetic force","Weak force","Strong nuclear force"],answer:3,explanation:"The strong nuclear force is the strongest of the four fundamental forces.",formula:""},
-  {id:13,category:"Forces in Nature",difficulty:"medium",type:"mcq",question:"The strong nuclear force holds together the quarks that make up:",options:["Electrons","Protons and neutrons","Neutrinos","Photons"],answer:1,explanation:"The strong force binds the quarks that make up protons and neutrons.",formula:""},
-  {id:14,category:"Forces in Nature",difficulty:"medium",type:"mcq",question:"Despite holding planets and galaxies together, gravity is:",options:["The strongest fundamental force","The weakest of the fundamental forces","Equal in strength to electromagnetism","Stronger than the strong nuclear force"],answer:1,explanation:"Although gravity holds planets and galaxies together, it is the weakest of the four fundamental forces.",formula:""},
-  {id:15,category:"Forces in Nature",difficulty:"medium",type:"mcq",question:"When electrons zoom through a wire, the wire becomes:",options:["Gravitational","Magnetic","Radioactive","Transparent"],answer:1,explanation:"When electrons move through a wire, the wire becomes magnetic, showing the magnetic part of the electromagnetic force.",formula:""},
-  {id:16,category:"Forces in Nature",difficulty:"hard",type:"mcq",question:"Which fundamental force is dominant in ordinary everyday phenomena like friction, elasticity and the normal force?",options:["Gravity","Electromagnetic force","Weak force","Strong force"],answer:1,explanation:"Friction, elasticity and the normal force are all consequences of the electromagnetic force acting between atoms.",formula:""},
-  {id:17,category:"Forces in Nature",difficulty:"medium",type:"mcq",question:"The electromagnetic force is responsible for all of the following EXCEPT:",options:["Friction","Elasticity","Gravity","The normal force"],answer:2,explanation:"Gravity is a separate fundamental force; the rest are electromagnetic in origin.",formula:""},
-  {id:18,category:"Forces in Nature",difficulty:"hard",type:"mcq",question:"Which two fundamental forces work together inside the nucleus and are both short-range?",options:["Gravity and electromagnetism","Weak force and strong force","Gravity and weak force","Electromagnetism and gravity"],answer:1,explanation:"The weak and strong nuclear forces both act at very short ranges within the nucleus.",formula:""},
+const BANK=[];
+function Q(t,q,c,a,b,d,e){BANK.push({t:t,q:q,o:[c,a,b,d],e:e||''});}
 
-  // ===== ELECTROSTATICS =====
-  {id:19,category:"Electrostatics",difficulty:"easy",type:"mcq",question:"Electrostatics is the study of electromagnetic phenomena that occur when:",options:["Charges are moving rapidly","There are no moving charges","Only positive charges exist","Only negative charges exist"],answer:1,explanation:"Electrostatics deals with electric phenomena that occur when there are no moving charges.",formula:""},
-  {id:20,category:"Electrostatics",difficulty:"easy",type:"mcq",question:"Static electricity is defined as:",options:["Electricity flowing through wires","An imbalance of electric charges within or on the surface of a material","Electricity generated by batteries only","The movement of electrons in a conductor"],answer:1,explanation:"Static electricity is an imbalance of electric charges within or on the surface of a material.",formula:""},
-  {id:21,category:"Electrostatics",difficulty:"medium",type:"mcq",question:"A static electric charge is created whenever two surfaces contact and separate, and at least one surface must be:",options:["A conductor","An insulator","A semiconductor","A superconductor"],answer:1,explanation:"For static charge to build up, at least one of the surfaces must be an insulator.",formula:""},
-  {id:22,category:"Electrostatics",difficulty:"medium",type:"mcq",question:"When two objects are rubbed together and become charged by friction, they acquire:",options:["Equal and same charges","Equal and opposite charges","No charge at all","Random charges"],answer:1,explanation:"By rubbing, the two objects acquire equal but opposite charges as electrons transfer between them.",formula:""},
-  {id:23,category:"Electrostatics",difficulty:"medium",type:"mcq",question:"The object that loses electrons during charging by friction becomes:",options:["Negatively charged","Positively charged","Neutral","Ionized"],answer:1,explanation:"Losing electrons leaves an object with a net positive charge.",formula:""},
-  {id:24,category:"Electrostatics",difficulty:"easy",type:"mcq",question:"Materials are normally neutral because they contain:",options:["Only protons","Only electrons","Equal numbers of positive and negative charges","No charges at all"],answer:2,explanation:"Materials are normally neutral because they contain equal amounts of positive and negative charge.",formula:""},
-  {id:25,category:"Electrostatics",difficulty:"medium",type:"mcq",question:"The crackling sound heard when combing dry hair is caused by:",options:["Air resistance","Small electric sparks","Magnetic fields","Sound waves from friction only"],answer:1,explanation:"The crackling sound is due to small electric sparks produced by the static charge.",formula:""},
-  {id:26,category:"Electrostatics",difficulty:"easy",type:"mcq",question:"Static electricity is named in contrast with:",options:["Dynamic electricity","Current electricity","Magnetic electricity","Solar electricity"],answer:1,explanation:"Static electricity is named in contrast with current electricity (moving charges).",formula:""},
-  {id:27,category:"Electrostatics",difficulty:"medium",type:"mcq",question:"A rubbed pen attracts dust and small pieces of paper. This phenomenon is called:",options:["Magnetic attraction","Electric attraction","Gravitational attraction","Nuclear attraction"],answer:1,explanation:"The charged pen attracts dust and paper through electric attraction.",formula:""},
-  {id:28,category:"Electrostatics",difficulty:"medium",type:"mcq",question:"Charged objects attract small uncharged bits of paper. This is because the paper:",options:["Is itself heavily charged","Gets polarized by the charged object's field","Conducts current to the object","Becomes magnetic"],answer:1,explanation:"The field of the charged object polarizes the paper, inducing opposite charges that attract it.",formula:""},
+/* ---------- FN: Forces in Nature ---------- */
+Q("FN","How many fundamental forces of nature are there?","Four","Two","Three","Five");
+Q("FN","Which of the four fundamental forces is the weakest?","Gravity","The weak force","Electromagnetic force","The strong nuclear force");
+Q("FN","Which of the four fundamental forces is the strongest?","The strong nuclear force","Gravity","Electromagnetic force","The weak force");
+Q("FN","Which force is responsible for particle decay, where one type of subatomic particle changes into another?","The weak force","The strong nuclear force","Gravity","Electromagnetic force");
+Q("FN","Which force holds the quarks together inside protons and neutrons?","The strong nuclear force","The weak force","Gravity","The magnetic force");
+Q("FN","The force that stops a book from falling through a table is a consequence of which fundamental force?","Electromagnetic force","Gravity","The weak force","The strong nuclear force","Electrons in the table's atoms repel electrons in the book's atoms.");
+Q("FN","The electromagnetic force consists of which two parts?","The electric force and the magnetic force","The weak force and the strong force","The gravitational force and the electric force","The magnetic force and the nuclear force");
+Q("FN","Who is credited with first proposing the idea of gravity as an attraction between two objects?","Isaac Newton","Charles Coulomb","Hendrik Lorentz","Andre-Marie Ampere");
+Q("FN","Which of the following is NOT one of the four fundamental forces?","Frictional force","Gravity","The weak force","The strong nuclear force","Friction is a consequence of the electromagnetic force.");
+Q("FN","Friction, elasticity and the normal force all arise from which fundamental force?","Electromagnetic force","Gravity","The weak force","The strong nuclear force");
+Q("FN","Gravity is an attraction between two objects that have:","Mass or energy","Only positive charge","Only negative charge","Only magnetic poles");
+Q("FN","According to the electromagnetic force, which statement about charges is correct?","Opposite charges attract and like charges repel","Like charges attract and opposite charges repel","All charges attract one another","All charges repel one another");
+Q("FN","Which component of the electromagnetic force acts on charged particles whether they are moving or stationary?","The electric force","The magnetic force","The weak force","The strong force");
+Q("FN","The magnetic component of the electromagnetic force appears when charged particles are:","In motion","At rest","Electrically neutral","Frozen at absolute zero");
+Q("FN","The weak force is also called the:","Weak nuclear interaction","Gravitational interaction","Coulomb interaction","Strong nuclear interaction");
 
-  // ===== ELECTRIC CHARGES =====
-  {id:29,category:"Electric Charges",difficulty:"easy",type:"mcq",question:"How many types of electric charges exist?",options:["One","Two","Three","Four"],answer:1,explanation:"There are two types of electric charge: positive and negative.",formula:""},
-  {id:30,category:"Electric Charges",difficulty:"easy",type:"mcq",question:"The two types of electric charges are called:",options:["North and South","Positive and negative","Up and down","Left and right"],answer:1,explanation:"The two types of electric charge are positive and negative.",formula:""},
-  {id:31,category:"Electric Charges",difficulty:"easy",type:"mcq",question:"An object will be negatively charged if it has:",options:["A deficit of electrons","An excess of electrons","An excess of protons","No neutrons"],answer:1,explanation:"An object with an excess of electrons becomes negatively charged.",formula:""},
-  {id:32,category:"Electric Charges",difficulty:"easy",type:"mcq",question:"The SI unit of electric charge is the:",options:["Ampere","Volt","Coulomb","Newton"],answer:2,explanation:"The SI unit of electric charge is the coulomb (C).",formula:""},
-  {id:33,category:"Electric Charges",difficulty:"easy",type:"mcq",question:"Which symbol is often used to denote electric charge?",options:["I","V","Q","R"],answer:2,explanation:"The symbol Q is commonly used to denote electric charge.",formula:""},
-  {id:34,category:"Electric Charges",difficulty:"medium",type:"mcq",question:"Positively charged substances repel other positively charged substances but are attracted to:",options:["Other positive substances","Negatively charged substances","Neutral substances only","Insulators only"],answer:1,explanation:"Unlike charges attract, so positive charges attract negative charges.",formula:""},
-  {id:35,category:"Electric Charges",difficulty:"medium",type:"mcq",question:"Which statement about electric charge is correct?",options:["Only protons can move in a conductor","Charge is only ever created, never destroyed","Electrons are the usual charge carriers in conductors","Charge exists only in large quantities"],answer:2,explanation:"In conductors, it is the (negative) electrons that move as the charge carriers.",formula:""},
-  {id:36,category:"Electric Charges",difficulty:"hard",type:"mcq",question:"Why can a positively charged object be produced by removing electrons from a neutral one?",options:["Because protons are removed instead","Because electrons are negatively charged and leaving them leaves extra positive charge","Because neutrons turn into protons","Because charge is created from nothing"],answer:1,explanation:"Removing negative electrons from a neutral object leaves it with a net positive charge.",formula:""},
+/* ---------- ES: Electrostatics and charging ---------- */
+Q("ES","Electrostatics is the study of electromagnetic phenomena that occur when there are:","No moving charges","Only moving charges","Only changing magnetic fields","Only alternating currents");
+Q("ES","Static electricity is an imbalance of electric charges:","Within or on the surface of a material","Only inside the nucleus of an atom","Only in a flowing current","Only in a vacuum");
+Q("ES","A static charge is created whenever two surfaces contact and separate, and at least one of the surfaces is:","An insulator","A conductor","A superconductor","A magnet");
+Q("ES","When two insulators are rubbed together, the object that loses electrons becomes:","Positively charged","Negatively charged","Neutral","Magnetised");
+Q("ES","The SI unit of electric charge is the:","Coulomb","Ampere","Volt","Farad");
+Q("ES","Which symbol is often used to denote electric charge?","Q","R","I","F");
+Q("ES","An object is negatively charged if it has:","An excess of electrons","A deficiency of electrons","An excess of protons","An excess of neutrons");
+Q("ES","Atoms are normally electrically neutral because they contain:","Equal numbers of positive and negative charges","Only neutrons","No electrons","More protons than electrons");
+Q("ES","The three main methods of charging an object are:","Friction, conduction (contact) and induction","Friction, convection and radiation","Conduction, convection and radiation","Induction, magnetisation and ionisation");
+Q("ES","Charging by friction is the transfer of which particles from one object to another?","Electrons","Protons","Neutrons","Nuclei");
+Q("ES","In charging by conduction (contact), a charged object touches a neutral object. The neutral object then:","Gains the same type of charge as the charged object","Gains the opposite type of charge","Stays neutral","Becomes magnetised");
+Q("ES","In charging by induction, the charged object is:","Brought near, but does not touch, the neutral object","Rubbed against the neutral object","Touched to the neutral object","Heated beside the neutral object");
+Q("ES","A neutral metal rod is brought close to a negatively charged rod without touching. The end of the metal rod nearer the charged rod becomes:","Positively charged","Negatively charged","Neutral","Magnetised");
+Q("ES","A neutral metal sphere is brought near a negatively charged rod, the sphere is grounded, and then the rod is removed. The sphere is left:","Positively charged","Negatively charged","Neutral","Unchanged and polarised");
+Q("ES","Which of the following is an everyday example of charge transfer by discharge between a cloud and the ground?","Lightning","A compass needle turning","A rainbow","Thunder echoing");
+Q("ES","Which of the following is an application of static electricity?","Photocopiers (xerography)","Steam turbines","Filament bulbs","Nuclear reactors");
+Q("ES","The crackling sound heard when very dry hair is combed with a vulcanite comb is caused by:","Small electric sparks","Magnetic attraction","Heating of the comb","Sound waves from the hair");
+Q("ES","Electrification by friction is most noticeable when the surrounding air is:","Dry","Humid","Wet","Saturated with water vapour");
+Q("ES","A plastic pen rubbed on a coat sleeve will afterwards attract:","Dust and small pieces of paper","Only iron filings","Nothing at all","Only water droplets");
+Q("ES","Static electricity is named in contrast with:","Current electricity","Solar electricity","Nuclear energy","Thermal energy");
+Q("ES","When two objects are rubbed together, they acquire charges that are:","Equal and opposite","Equal and of the same sign","Unequal and opposite","Always zero");
+Q("ES","The magnitude of the charge on one electron is approximately:","1.6 × 10⁻¹⁹ C","1.6 × 10⁻⁹ C","9 × 10⁹ C","8.85 × 10⁻¹² C");
+Q("ES","Electric charge is a physical property of matter that causes it to:","Experience a force when near other charged matter","Emit light","Lose mass","Float in air");
+Q("ES","Charged matter is influenced by, and produces:","Electromagnetic fields","Gravitational waves only","Sound waves","Nuclear decay");
 
-  // ===== METHODS OF CHARGING =====
-  {id:37,category:"Methods of Charging",difficulty:"easy",type:"mcq",question:"How many main ways are there to cause an object to become charged?",options:["Two","Three","Four","Five"],answer:1,explanation:"There are three main ways to charge an object: friction, conduction (contact), and induction.",formula:""},
-  {id:38,category:"Methods of Charging",difficulty:"easy",type:"mcq",question:"Charging by friction involves the transfer of electrons by:",options:["Direct contact with a charged object","Rubbing two objects together","Bringing a charged object near without touching","Grounding the object"],answer:1,explanation:"Charging by friction involves rubbing two objects together to transfer electrons.",formula:""},
-  {id:39,category:"Methods of Charging",difficulty:"easy",type:"mcq",question:"In charging by conduction or contact, a charged object is:",options:["Brought near but does not touch a neutral object","Touched to a neutral object","Rubbed against a charged object","Connected to ground only"],answer:1,explanation:"Charging by conduction happens when a charged object is touched to a neutral object.",formula:""},
-  {id:40,category:"Methods of Charging",difficulty:"medium",type:"mcq",question:"During charging by contact, the neutral object gains:",options:["The opposite charge of the initially charged object","The same charge as the initially charged object","No charge at all","A random charge"],answer:1,explanation:"In charging by contact, the neutral object acquires the same charge as the charged object.",formula:""},
-  {id:41,category:"Methods of Charging",difficulty:"medium",type:"mcq",question:"Charging by induction involves:",options:["Direct physical contact between objects","Rubbing two objects together","Electrons reacting to the electric field without touching the charged object","Connecting objects with a wire"],answer:2,explanation:"Induction charges an object by the influence of an electric field, without touching.",formula:""},
-  {id:42,category:"Methods of Charging",difficulty:"medium",type:"mcq",question:"In charging by induction, when a negatively charged object is brought near a metal object, electrons in the metal:",options:["Move toward the charged object","Are repelled and move away from it","Remain stationary","Escape into the air"],answer:1,explanation:"Like charges repel, so electrons in the metal are pushed away from the negative rod.",formula:""},
-  {id:43,category:"Methods of Charging",difficulty:"hard",type:"mcq",question:"In the induction process, if the neutral object is grounded, the result is that the sphere becomes:",options:["Similarly charged to the original charged object","Oppositely charged in comparison to the original charged object","Completely neutral","Doubly charged"],answer:1,explanation:"After grounding, the sphere is left with a charge opposite to that of the original charged object.",formula:""},
-  {id:44,category:"Methods of Charging",difficulty:"medium",type:"mcq",question:"Lightning is an example of charging by:",options:["Friction","Conduction","Induction","None of the above"],answer:2,explanation:"Lightning is a large-scale example of charging by induction between cloud and ground.",formula:""},
-  {id:45,category:"Methods of Charging",difficulty:"medium",type:"mcq",question:"In the induction process, the near end of a metal object placed close to a negatively charged rod becomes:",options:["Negatively charged","Positively charged","Neutral","Doubly negatively charged"],answer:1,explanation:"The near end becomes positively charged because electrons are repelled to the far end.",formula:""},
-  {id:46,category:"Methods of Charging",difficulty:"hard",type:"mcq",question:"Which method of charging produces an object whose charge is temporary until grounding makes it permanent?",options:["Friction","Contact","Induction","None"],answer:2,explanation:"Induction gives a temporary charge that becomes permanent only after grounding and removing the rod.",formula:""},
+/* ---------- CL: Coulomb's law ---------- */
+Q("CL","Coulomb studied the force between electrically charged bodies in which year?","1785","1687","1831","1905");
+Q("CL","According to Coulomb's law, the force between two point charges is directly proportional to:","The product of the charges","The sum of the charges","The square of the distance","The distance between them");
+Q("CL","According to Coulomb's law, the force between two point charges is inversely proportional to:","The square of the distance between them","The distance between them","The product of the charges","The sum of the charges");
+Q("CL","Coulomb's law is also known as the:","Inverse square law","Direct proportion law","Conservation law","Superposition principle only");
+Q("CL","The value of the constant k in Coulomb's law is approximately:","9 × 10⁹ N m² C⁻²","9 × 10⁻⁹ N m² C⁻²","8.85 × 10⁻¹² N m² C⁻²","1.6 × 10⁻¹⁹ N m² C⁻²");
+Q("CL","In terms of the permittivity of free space, the constant k is written as:","1/(4πε₀)","4πε₀","ε₀/4π","4π/ε₀");
+Q("CL","The permittivity of free space, ε₀, has a value of approximately:","8.854 × 10⁻¹² F/m","8.854 × 10¹² F/m","9 × 10⁹ F/m","1.6 × 10⁻¹⁹ F/m");
+Q("CL","For Coulomb's law to apply directly, the charges must be:","Small compared with the distance between them (point charges)","Very large compared with the distance between them","Always equal in magnitude","Always of the same sign");
+Q("CL","If the distance between two point charges is doubled, the force between them becomes:","One quarter","One half","Double","Four times");
+Q("CL","If the distance between two point charges is halved, the force between them becomes:","Four times","Double","One half","One quarter");
+Q("CL","If the distance between two point charges is tripled, the force between them becomes:","One ninth","One third","Three times","Nine times");
+Q("CL","If both charges are doubled and the distance stays the same, the force becomes:","Four times","Double","Half","Unchanged");
+Q("CL","What happens to the force between two charges if only one of the charges is doubled?","It doubles","It quadruples","It halves","It stays the same");
+Q("CL","Two charges of +12 μC and +8 μC are 10 cm apart in a vacuum. The force between them is:","86.4 N","8.64 N","864 N","0.864 N","F = kQ₁Q₂/r² = (9×10⁹)(12×10⁻⁶)(8×10⁻⁶)/(0.1)² = 86.4 N (repulsive).");
+Q("CL","Two charges of +2 μC and +5 μC are placed 10 cm apart. The force between them is:","9 N","90 N","0.9 N","18 N","F = (9×10⁹)(2×10⁻⁶)(5×10⁻⁶)/(0.1)² = 9 N.");
+Q("CL","Two 1 μC charges are 1 m apart in a vacuum. The force between them is:","9 × 10⁻³ N","9 × 10⁻⁶ N","9 N","9 × 10³ N");
+Q("CL","Two charges of +3 μC each are 30 cm apart. The force between them is:","0.9 N","9 N","0.09 N","2.7 N","F = (9×10⁹)(3×10⁻⁶)²/(0.3)² = 0.9 N.");
+Q("CL","A charge of +4 μC and a charge of −5 μC are 20 cm apart. The force between them is:","4.5 N, attractive","4.5 N, repulsive","0.45 N, attractive","45 N, attractive");
+Q("CL","Three small charges A (+2×10⁻⁸ C), B (−5×10⁻⁸ C) and P (+1×10⁻⁸ C) lie in a line with A–B = 6 cm and B–P = 4 cm. What is the force on P due to A alone?","1.8 × 10⁻⁴ N (repulsive)","1.8 × 10⁻³ N (repulsive)","2.8 × 10⁻³ N (repulsive)","1.8 × 10⁻⁴ N (attractive)","A–P = 10 cm = 0.1 m, so F = (9×10⁹)(2×10⁻⁸)(1×10⁻⁸)/(0.1)² = 1.8 × 10⁻⁴ N.");
+Q("CL","For the same arrangement (A = +2×10⁻⁸ C, B = −5×10⁻⁸ C, P = +1×10⁻⁸ C, B–P = 4 cm), the force on P due to B is:","2.8 × 10⁻³ N (attractive)","2.8 × 10⁻³ N (repulsive)","1.8 × 10⁻⁴ N (attractive)","4.5 × 10⁻³ N (attractive)","F = (9×10⁹)(5×10⁻⁸)(1×10⁻⁸)/(0.04)² ≈ 2.8 × 10⁻³ N.");
+Q("CL","For the same arrangement, the resultant force on P is approximately:","2.62 × 10⁻³ N towards B","2.98 × 10⁻³ N towards B","2.62 × 10⁻³ N away from B","1.8 × 10⁻⁴ N towards B","2.8 × 10⁻³ − 1.8 × 10⁻⁴ = 2.62 × 10⁻³ N; B attracts P more strongly than A repels it.");
+Q("CL","Two identical charges 3 m apart repel each other with a force of 10 N. If the separation is increased to 6 m, the force is:","2.5 N","5 N","20 N","40 N");
+Q("CL","By what factor must the separation of two charges be increased to reduce the force between them to one-sixteenth of its value?","4","16","2","8");
+Q("CL","Two charges of +4 nC and +6 nC are 3 cm apart. The force between them is approximately:","2.4 × 10⁻⁴ N","2.4 × 10⁻⁶ N","2.4 × 10⁻² N","7.2 × 10⁻⁴ N");
+Q("CL","The net force on a charge due to several other charges is found using:","Vector addition (the superposition principle)","Scalar addition of magnitudes only","Multiplying the individual forces","Averaging the individual forces");
+Q("CL","Coulomb's law is similar in form to Newton's law of gravitation because both:","Vary as the inverse square of the distance","Are always attractive","Depend on the sum of the sources","Are independent of distance");
+Q("CL","12 μC expressed in coulombs is:","1.2 × 10⁻⁵ C","1.2 × 10⁻⁷ C","1.2 × 10⁻³ C","1.2 × 10⁻⁹ C");
+Q("CL","10 nC expressed in coulombs is:","1 × 10⁻⁸ C","1 × 10⁻⁶ C","1 × 10⁻¹⁰ C","1 × 10⁻³ C");
 
-  // ===== COULOMB'S LAW =====
-  {id:47,category:"Coulomb's Law",difficulty:"medium",type:"mcq",question:"Coulomb's Law was studied in which year?",options:["1687","1785","1850","1900"],answer:1,explanation:"Coulomb studied the law of force between charges in 1785.",formula:""},
-  {id:48,category:"Coulomb's Law",difficulty:"easy",type:"mcq",question:"Coulomb's Law states that the force between two point charges is directly proportional to:",options:["The sum of the charges","The product of the charges","The difference of the charges","The square of the charges"],answer:1,explanation:"The force is directly proportional to the product of the two charges (Q1 × Q2).",formula:"F = k·Q1·Q2 / r<sup>2</sup>"},
-  {id:49,category:"Coulomb's Law",difficulty:"easy",type:"mcq",question:"According to Coulomb's Law, the force between two point charges is inversely proportional to:",options:["The distance between them","The square of the distance between them","The cube of the distance between them","The square root of the distance between them"],answer:1,explanation:"The force is inversely proportional to the square of the distance between the charges.",formula:"F = k·Q1·Q2 / r<sup>2</sup>"},
-  {id:50,category:"Coulomb's Law",difficulty:"easy",type:"mcq",question:"The value of the constant K in Coulomb's Law is approximately:",options:["6 × 10<sup>9</sup>","8 × 10<sup>9</sup>","9 × 10<sup>9</sup>","10 × 10<sup>9</sup>"],answer:2,explanation:"The Coulomb constant K is approximately 9 × 10<sup>9</sup> N·m²/C².",formula:"K = 9 × 10<sup>9</sup> N·m²/C²"},
-  {id:51,category:"Coulomb's Law",difficulty:"medium",type:"mcq",question:"The permittivity of free space is denoted by:",options:["ε","ε₀","μ₀","K"],answer:1,explanation:"The permittivity of free space is denoted by the symbol ε₀ (epsilon nought).",formula:"K = 1/(4πε₀)"},
-  {id:52,category:"Coulomb's Law",difficulty:"easy",type:"mcq",question:"Coulomb's Law is also known as the:",options:["Direct square law","Inverse square law","Linear law","Exponential law"],answer:1,explanation:"Coulomb's Law is an inverse square law because force falls off as the inverse of r².",formula:""},
-  {id:53,category:"Coulomb's Law",difficulty:"medium",type:"mcq",question:"The condition for applying Coulomb's Law is that the charges must be:",options:["Large compared with the distance between them","Small compared with the distance between them","Equal in magnitude","Opposite in sign"],answer:1,explanation:"Coulomb's Law applies to point charges, which are small compared to the distance between them.",formula:""},
-  {id:54,category:"Coulomb's Law",difficulty:"easy",type:"mcq",question:"Two positive charges will:",options:["Attract each other","Repel each other","Have no effect on each other","Neutralize each other"],answer:1,explanation:"Like charges repel, so two positive charges repel each other.",formula:""},
-  {id:55,category:"Coulomb's Law",difficulty:"medium",type:"mcq",question:"When calculating the net force on a charge due to multiple charges, we use the principle of:",options:["Conservation of charge","Superposition","Equilibrium","Induction"],answer:1,explanation:"The net force is found by the principle of superposition: vector addition of individual forces.",formula:""},
-  {id:56,category:"Coulomb's Law",difficulty:"medium",type:"mcq",question:"The SI unit of the Coulomb constant K is:",options:["N·m/C","N·m²/C²","C·m/N","N/C"],answer:1,explanation:"K has units of newton·metre² per coulomb² (N·m²/C²).",formula:""},
-  {id:57,category:"Coulomb's Law",difficulty:"hard",type:"mcq",question:"If the distance between two charges is doubled, the electric force between them becomes:",options:["Half","One quarter","Double","Four times"],answer:1,explanation:"Since F is inversely proportional to r², doubling r reduces the force to one quarter.",formula:"F ∝ 1/r²"},
-  {id:58,category:"Coulomb's Law",difficulty:"hard",type:"mcq",question:"If the magnitude of one charge is tripled while everything else stays the same, the electric force:",options:["Stays the same","Triples","Becomes one third","Becomes one ninth"],answer:1,explanation:"Force is directly proportional to the product of charges, so tripling one charge triples the force.",formula:"F ∝ Q1·Q2"},
+/* ---------- EF: Electric field ---------- */
+Q("EF","An electric field can be defined as:","A region where an electric force is experienced","A region where only heat is produced","A path through which current flows","A region with no charges");
+Q("EF","The electric field intensity E at a point is defined as:","The force per unit charge at that point","The charge per unit force","The work done per unit charge","The charge per unit area");
+Q("EF","The relationship between electric field E, force F and charge Q is:","E = F/Q","E = FQ","E = Q/F","E = F/Q²");
+Q("EF","The unit of electric field intensity is:","N/C (or V/m)","C/N","N m","J/C only");
+Q("EF","Electric field intensity is:","A vector quantity","A scalar quantity","Dimensionless","Always positive");
+Q("EF","The direction of the electric field at a point is the direction of the force on:","A positive charge","A negative charge","A neutral particle","A moving electron only");
+Q("EF","The force on a charge q placed in an electric field E is:","F = qE","F = q/E","F = E/q","F = qE²");
+Q("EF","The electric field intensity due to a point charge Q at distance r is:","Q/(4πε₀r²)","Q/(4πε₀r)","Qr²/(4πε₀)","Q²/(4πε₀r²)");
+Q("EF","What is the magnitude of the electric field 3 m from a point charge of 5 nC?","5 N/C","15 N/C","45 N/C","1.7 N/C","E = (9×10⁹)(5×10⁻⁹)/3² = 5 N/C.");
+Q("EF","What is the electric field 1 m from a point charge of 1 nC?","9 N/C","9 × 10⁻⁹ N/C","1 N/C","90 N/C");
+Q("EF","What is the electric field 2 m from a point charge of 8 nC?","18 N/C","36 N/C","72 N/C","9 N/C","E = (9×10⁹)(8×10⁻⁹)/4 = 18 N/C.");
+Q("EF","If the distance from a point charge is doubled, the electric field strength becomes:","One quarter","One half","Double","Four times");
+Q("EF","Arrows on electric lines of force show the direction of the force on:","A positive charge","A negative charge","An uncharged body","A magnet");
+Q("EF","The force on a negative charge in an electric field is:","In the opposite direction to the field","In the same direction as the field","Perpendicular to the field","Always zero");
+Q("EF","When adding two or more electric fields at a point, you must:","Add them as vectors","Add only their magnitudes","Multiply them","Subtract the smaller from the larger always");
+Q("EF","A 2 μC charge is placed in a field of 500 N/C. The force on it is:","1 × 10⁻³ N","1 × 10⁻⁶ N","2.5 × 10⁸ N","250 N");
+Q("EF","A force of 8 × 10⁻³ N acts on a 4 μC charge. The electric field at that point is:","2000 N/C","2 × 10⁻⁹ N/C","32 N/C","500 N/C");
+Q("EF","A particle of charge q and mass m in an electric field E has an acceleration of:","qE/m","mE/q","qm/E","E/(qm)");
+Q("EF","The force on an electron in an electric field of 1 × 10⁴ N/C is approximately:","1.6 × 10⁻¹⁵ N","1.6 × 10⁻²³ N","1.6 × 10⁻⁷ N","6.25 × 10²² N");
+Q("EF","A proton (m ≈ 1.67 × 10⁻²⁷ kg) is placed in a field of 1000 N/C. Its acceleration is approximately:","9.6 × 10¹⁰ m/s²","9.6 × 10⁷ m/s²","1.6 × 10⁻¹⁶ m/s²","6 × 10¹⁵ m/s²");
+Q("EF","Electric field lines start on positive charges and end on:","Negative charges","Positive charges","Neutral atoms","Magnetic poles");
+Q("EF","Where electric field lines are closer together, the field is:","Stronger","Weaker","Zero","Uniform");
 
-  // ===== ELECTRIC FIELDS =====
-  {id:59,category:"Electric Fields",difficulty:"easy",type:"mcq",question:"An electric field can be defined as:",options:["A region where magnetic force is obtained","A region where an electric force is obtained","A region with no forces","A region with only gravitational force"],answer:1,explanation:"An electric field is a region of space where an electric force would be experienced by a charge.",formula:""},
-  {id:60,category:"Electric Fields",difficulty:"easy",type:"mcq",question:"Electric field intensity (E) is defined as:",options:["Charge per unit force","Force per unit charge","Voltage per unit distance","Current per unit area"],answer:1,explanation:"Electric field intensity E is the force per unit charge.",formula:"E = F/Q"},
-  {id:61,category:"Electric Fields",difficulty:"easy",type:"mcq",question:"The unit of electric field intensity E is:",options:["Newton per coulomb (N/C) or volt per metre (V/m)","Coulomb per newton (C/N)","Joule per coulomb (J/C)","Watt per metre (W/m)"],answer:0,explanation:"E is measured in N/C, which is equivalent to V/m.",formula:""},
-  {id:62,category:"Electric Fields",difficulty:"easy",type:"mcq",question:"Electric field intensity E is a:",options:["Scalar quantity","Vector quantity","Neither scalar nor vector","Constant quantity"],answer:1,explanation:"Electric field intensity is a vector quantity; it has both magnitude and direction.",formula:""},
-  {id:63,category:"Electric Fields",difficulty:"medium",type:"mcq",question:"The direction of the electric field is that of the force on a:",options:["Negative charge","Positive charge","Neutral particle","Any charge"],answer:1,explanation:"The electric field points in the direction of the force on a positive test charge.",formula:""},
-  {id:64,category:"Electric Fields",difficulty:"medium",type:"mcq",question:"The force on a negative charge in an electric field is in the direction:",options:["Same as the field","Opposite to the field","Perpendicular to the field","Parallel to the field"],answer:1,explanation:"A negative charge experiences a force opposite to the direction of the electric field.",formula:""},
-  {id:65,category:"Electric Fields",difficulty:"medium",type:"mcq",question:"The electric field intensity due to a point charge Q at a distance r is given by:",options:["E = Q/(4πε₀r)","E = Q/(4πε₀r²)","E = Qr²/(4πε₀)","E = Qr/(4πε₀)"],answer:1,explanation:"For a point charge, E = Q/(4πε₀r²).",formula:"E = Q/(4πε₀r²)"},
-  {id:66,category:"Electric Fields",difficulty:"medium",type:"mcq",question:"Electric field lines are also called:",options:["Electric current","Electric flux","Magnetic flux","Potential lines"],answer:1,explanation:"Electric field lines are also referred to as electric flux lines.",formula:""},
-  {id:67,category:"Electric Fields",difficulty:"medium",type:"mcq",question:"On electric field line diagrams, the arrows show the direction of the force on:",options:["A negative charge","A positive charge","Any test object","A neutral atom"],answer:1,explanation:"Field line arrows point in the direction a positive test charge would move.",formula:""},
-  {id:68,category:"Electric Fields",difficulty:"hard",type:"mcq",question:"Where are the electric field lines closest together for a point charge?",options:["Far from the charge","Near the charge","At infinity","Uniformly everywhere"],answer:1,explanation:"Field lines are closest near the charge, where the field is strongest.",formula:""},
-  {id:69,category:"Electric Fields",difficulty:"medium",type:"mcq",question:"The electric field due to a point charge is directly proportional to:",options:["The distance r","The charge Q","The square of the distance","1/Q"],answer:1,explanation:"E is directly proportional to the charge Q and inversely proportional to r².",formula:"E = kQ/r²"},
+/* ---------- EP: Electric potential ---------- */
+Q("EP","Electric potential is a:","Scalar quantity","Vector quantity","Tensor quantity that has direction","Unit of charge");
+Q("EP","Electric potential at a point is defined as:","The work done per unit charge in bringing a positive test charge from a reference point to that point","The force per unit charge at that point","The charge per unit area of a conductor","The rate of flow of charge");
+Q("EP","The unit of electric potential is the:","Volt (joule per coulomb)","Newton per coulomb","Farad","Ampere");
+Q("EP","The reference point for electric potential is usually taken as:","Infinity","The surface of the Earth only","The positive terminal","The centre of the charge");
+Q("EP","The relationship between potential V, work done W and charge Q is:","V = W/Q","V = WQ","V = Q/W","V = W/Q²");
+Q("EP","The electric potential due to a point charge Q at distance r (relative to infinity) is:","V = Q/(4πε₀r)","V = Q/(4πε₀r²)","V = Qr/(4πε₀)","V = 4πε₀Q/r");
+Q("EP","The expression V = Q/(4πε₀r) is known as the:","Coulomb potential","Ampere potential","Lorentz potential","Gauss potential");
+Q("EP","The electric potential due to a system of point charges is:","The sum of the individual potentials","The product of the individual potentials","The vector sum of the individual potentials","Equal to the largest individual potential");
+Q("EP","What is the potential at 3 m from a point charge of 5 nC?","15 V","5 V","45 V","1.7 V","V = (9×10⁹)(5×10⁻⁹)/3 = 15 V.");
+Q("EP","What is the potential at 0.5 m from a point charge of 2 nC?","36 V","18 V","72 V","9 V");
+Q("EP","What is the potential at 0.9 m from a point charge of 3 nC?","30 V","27 V","90 V","3 V");
+Q("EP","How much work is done moving a 2 C charge through a potential difference of 12 V?","24 J","6 J","14 J","0.17 J");
+Q("EP","A 5 μC charge is placed at a point where the potential is 200 V. Its electric potential energy is:","1 × 10⁻³ J","4 × 10⁷ J","1 × 10⁻⁶ J","40 J");
+Q("EP","If the distance from a point charge is doubled, the electric potential becomes:","Half","One quarter","Double","Four times");
+Q("EP","Electric potential is often referred to as:","Voltage","Current","Resistance","Capacitance");
+Q("EP","The potential of a negative point charge, relative to infinity, is:","Negative","Positive","Zero everywhere","Infinite");
+Q("EP","1 volt is equivalent to:","1 joule per coulomb","1 coulomb per joule","1 newton per metre","1 watt per second");
 
-  // ===== ELECTRIC POTENTIAL =====
-  {id:70,category:"Electric Potential",difficulty:"easy",type:"mcq",question:"Electric potential is a:",options:["Vector quantity","Scalar quantity","Tensor quantity","Neither scalar nor vector"],answer:1,explanation:"Electric potential is a scalar quantity.",formula:""},
-  {id:71,category:"Electric Potential",difficulty:"medium",type:"mcq",question:"Electric potential describes the amount of work needed to move a unit positive charge from:",options:["Ground to the specific point","A reference point to a specific point in the field","The positive plate to the negative plate","One conductor to another"],answer:1,explanation:"Electric potential is the work needed to move a unit positive charge from a reference point to the point in the field.",formula:"V = W/Q"},
-  {id:72,category:"Electric Potential",difficulty:"medium",type:"mcq",question:"The reference point for electric potential is typically chosen as:",options:["Ground","Infinity","The centre of the charge","The Earth's surface"],answer:1,explanation:"Electric potential is usually measured relative to infinity.",formula:""},
-  {id:73,category:"Electric Potential",difficulty:"easy",type:"mcq",question:"The SI unit of electric potential is the:",options:["Coulomb","Joule","Volt","Newton"],answer:2,explanation:"The SI unit of electric potential is the volt (V).",formula:""},
-  {id:74,category:"Electric Potential",difficulty:"easy",type:"mcq",question:"One volt is equivalent to:",options:["One coulomb per joule","One joule per coulomb","One newton per coulomb","One joule per newton"],answer:1,explanation:"One volt equals one joule per coulomb (1 V = 1 J/C).",formula:""},
-  {id:75,category:"Electric Potential",difficulty:"easy",type:"mcq",question:"Electric potential is also known as:",options:["Electric current","Voltage","Resistance","Capacitance"],answer:1,explanation:"Electric potential is commonly called voltage.",formula:""},
-  {id:76,category:"Electric Potential",difficulty:"medium",type:"mcq",question:"The electric potential created by a point charge Q at a distance r is given by:",options:["V = Q/(4πε₀r²)","V = Q/(4πε₀r)","V = Qr/(4πε₀)","V = Q/(4πε₀r³)"],answer:1,explanation:"For a point charge, V = Q/(4πε₀r).",formula:"V = Q/(4πε₀r)"},
-  {id:77,category:"Electric Potential",difficulty:"medium",type:"mcq",question:"The equation V = Q/(4πε₀r) is known as the:",options:["Ohm's potential","Coulomb potential","Newton potential","Faraday potential"],answer:1,explanation:"V = Q/(4πε₀r) is called the Coulomb potential.",formula:""},
-  {id:78,category:"Electric Potential",difficulty:"medium",type:"mcq",question:"The electric potential due to a system of point charges is equal to:",options:["The product of the individual potentials","The sum of the individual potentials","The difference of the individual potentials","The average of the individual potentials"],answer:1,explanation:"Since potential is a scalar, the total potential is the algebraic sum of the individual potentials.",formula:""},
-  {id:79,category:"Electric Potential",difficulty:"medium",type:"mcq",question:"Electric potential energy is defined as the total potential energy a unit charge will possess if located:",options:["Only at infinity","At any point in outer space","Only inside a conductor","Only on the surface of a charged sphere"],answer:1,explanation:"Electric potential energy is the potential energy a unit charge possesses at any point in the field.",formula:""},
-  {id:80,category:"Electric Potential",difficulty:"medium",type:"mcq",question:"The electric potential at a point equals the electric potential energy divided by:",options:["The distance","The charge of the particle","The mass of the particle","The velocity of the particle"],answer:1,explanation:"Potential V equals potential energy divided by charge: V = U/Q.",formula:"V = U/Q"},
-  {id:81,category:"Electric Potential",difficulty:"medium",type:"mcq",question:"Which statement about electric field and potential is TRUE?",options:["Electric field is a scalar and potential is a vector","Electric field is a vector and potential is a scalar","Both are vectors","Both are scalars"],answer:1,explanation:"Electric field is a vector while electric potential is a scalar.",formula:""},
+/* ---------- CA: Capacitors ---------- */
+Q("CA","A capacitor is a device for:","Storing electric charge","Producing electric current","Increasing resistance","Measuring voltage");
+Q("CA","A basic capacitor consists of:","Two parallel metal plates separated by a dielectric","Two coils of wire","A single metal plate","A wire wound on an iron core");
+Q("CA","The insulator between the plates of a capacitor is called the:","Dielectric","Electrolyte","Conductor","Terminal");
+Q("CA","Which of the following can be used as a dielectric?","Paper, wax, ceramics, mica or air","Copper and silver","Iron and steel","Aluminium and gold");
+Q("CA","Charging a capacitor from a battery continues until the potential difference across the capacitor equals:","The e.m.f. of the battery","Zero","Twice the e.m.f. of the battery","The resistance of the circuit");
+Q("CA","During charging, the charging current falls to zero when:","The p.d. across the capacitor equals the battery voltage","The battery is disconnected","The plates touch","The capacitor is short-circuited");
+Q("CA","The capacitance of a capacitor is defined by:","C = Q/V","C = QV","C = V/Q","C = Q/V²");
+Q("CA","The SI unit of capacitance is the:","Farad","Henry","Coulomb","Ohm");
+Q("CA","One farad is the capacitance of a capacitor that stores:","One coulomb of charge when the p.d. across it is one volt","One joule of energy at one ampere","One volt at one coulomb per second","One coulomb at one ampere");
+Q("CA","1 μF is equal to:","1 × 10⁻⁶ F","1 × 10⁻⁹ F","1 × 10⁻¹² F","1 × 10⁻³ F");
+Q("CA","1 nF is equal to:","1 × 10⁻⁹ F","1 × 10⁻⁶ F","1 × 10⁻¹² F","1 × 10⁻³ F");
+Q("CA","1 pF is equal to:","1 × 10⁻¹² F","1 × 10⁻⁹ F","1 × 10⁻⁶ F","1 × 10⁻¹⁵ F");
+Q("CA","Which of the following is NOT a factor that determines the capacitance of a capacitor?","The colour of the plates","The distance between the plates","The area of the plates","The nature of the dielectric");
+Q("CA","Increasing the area of the plates of a capacitor:","Increases its capacitance","Decreases its capacitance","Does not change its capacitance","Makes it discharge");
+Q("CA","Increasing the distance between the plates of a capacitor:","Decreases its capacitance","Increases its capacitance","Does not change its capacitance","Doubles its charge");
+Q("CA","Types of capacitors are named according to:","The dielectric present","The colour of the casing","The battery used","The number of plates only");
+Q("CA","Which of the following is a type of capacitor?","Paper capacitor","Copper capacitor","Magnetic capacitor","Diode capacitor");
+Q("CA","A 10 μF capacitor is charged by a 12 V battery. The charge stored is:","120 μC","1.2 μC","0.83 μC","22 μC","Q = CV = (10 × 10⁻⁶)(12) = 120 μC.");
+Q("CA","A capacitor stores 6 μC of charge at a p.d. of 3 V. Its capacitance is:","2 μF","18 μF","0.5 μF","9 μF");
+Q("CA","A 5 μF capacitor holds 50 μC of charge. The p.d. across it is:","10 V","250 V","0.1 V","55 V");
+Q("CA","When a charged capacitor is disconnected from the battery, the charge on its plates:","Remains stored","Immediately disappears","Doubles","Flows back into the battery");
+Q("CA","When a charged capacitor's plates are joined by a wire, the capacitor:","Discharges as electrons flow through the wire","Charges further","Explodes always","Becomes a battery");
+Q("CA","As a capacitor charges, the potential difference between its plates:","Increases","Decreases","Stays zero","Alternates");
+Q("CA","A capacitance of 100 μF is equal to:","1 × 10⁻⁴ F","1 × 10⁻⁶ F","1 × 10⁻² F","1 × 10⁴ F");
+Q("CA","A capacitance of 2.2 nF is equal to:","2200 pF","22 pF","0.22 pF","2.2 pF");
 
-  // ===== CAPACITORS & CAPACITANCE =====
-  {id:82,category:"Capacitors & Capacitance",difficulty:"easy",type:"mcq",question:"A capacitor is a device for:",options:["Generating electric charge","Storing electric charge","Converting AC to DC","Measuring current"],answer:1,explanation:"A capacitor is a device for storing electric charge.",formula:""},
-  {id:83,category:"Capacitors & Capacitance",difficulty:"easy",type:"mcq",question:"A basic capacitor consists of two parallel metal plates with an insulator called a _______ between them.",options:["Conductor","Dielectric","Semiconductor","Electrolyte"],answer:1,explanation:"The insulator between the plates is called a dielectric.",formula:""},
-  {id:84,category:"Capacitors & Capacitance",difficulty:"medium",type:"mcq",question:"Which of the following is NOT an example of a dielectric?",options:["Air","Paper","Copper","Mica"],answer:2,explanation:"Copper is a conductor, not a dielectric. Air, paper and mica are dielectrics.",formula:""},
-  {id:85,category:"Capacitors & Capacitance",difficulty:"medium",type:"mcq",question:"During capacitor charging, electrons from the negative terminal of the battery accumulate on:",options:["Both plates equally","One plate of the capacitor","The dielectric material","The positive terminal"],answer:1,explanation:"Electrons accumulate on one plate of the capacitor while it charges.",formula:""},
-  {id:86,category:"Capacitors & Capacitance",difficulty:"hard",type:"mcq",question:"The charging of a capacitor continues until:",options:["The current reaches maximum","The potential difference across the capacitor equals the e.m.f. of the battery","The dielectric breaks down","The plates melt"],answer:1,explanation:"Charging stops when the p.d. across the capacitor equals the battery e.m.f.",formula:""},
-  {id:87,category:"Capacitors & Capacitance",difficulty:"medium",type:"mcq",question:"When a charged capacitor is disconnected from the battery and its plates are joined by a wire:",options:["It remains charged forever","It becomes more charged","It discharges","Nothing happens"],answer:2,explanation:"Joining the plates with a wire allows the capacitor to discharge.",formula:""},
-  {id:88,category:"Capacitors & Capacitance",difficulty:"medium",type:"mcq",question:"Which of the following is a type of capacitor mentioned in the note?",options:["Variable capacitor","Paper capacitor","Electrolytic capacitor","Ceramics capacitor"],answer:0,explanation:"Variable capacitors are among the types mentioned; the note lists variable, paper and ceramics types.",formula:""},
-  {id:89,category:"Capacitors & Capacitance",difficulty:"easy",type:"mcq",question:"Capacitance is defined as:",options:["The ability to generate voltage","The ability to store charge","The ability to conduct current","The ability to resist current"],answer:1,explanation:"Capacitance is the ability of a capacitor to store charge.",formula:""},
-  {id:90,category:"Capacitors & Capacitance",difficulty:"easy",type:"mcq",question:"The formula for capacitance C is:",options:["C = V/Q","C = Q/V","C = Q × V","C = Q + V"],answer:1,explanation:"Capacitance is charge per unit voltage: C = Q/V.",formula:"C = Q/V"},
-  {id:91,category:"Capacitors & Capacitance",difficulty:"easy",type:"mcq",question:"The unit for capacitance is the:",options:["Coulomb","Volt","Farad","Ohm"],answer:2,explanation:"Capacitance is measured in farads (F).",formula:""},
-  {id:92,category:"Capacitors & Capacitance",difficulty:"medium",type:"mcq",question:"One farad stores _______ when the potential difference across the capacitor is one volt.",options:["One ampere of current","One coulomb of charge","One joule of energy","One watt of power"],answer:1,explanation:"A 1 F capacitor stores 1 coulomb of charge at a p.d. of 1 volt.",formula:""},
-  {id:93,category:"Capacitors & Capacitance",difficulty:"easy",type:"mcq",question:"One microfarad (1 µF) is equal to:",options:["1 × 10<sup>−3</sup> F","1 × 10<sup>−6</sup> F","1 × 10<sup>−9</sup> F","1 × 10<sup>−12</sup> F"],answer:1,explanation:"1 µF = 1 × 10<sup>−6</sup> farads.",formula:""},
-  {id:94,category:"Capacitors & Capacitance",difficulty:"easy",type:"mcq",question:"One nanofarad (1 nF) is equal to:",options:["1 × 10<sup>−6</sup> F","1 × 10<sup>−9</sup> F","1 × 10<sup>−12</sup> F","1 × 10<sup>−3</sup> F"],answer:1,explanation:"1 nF = 1 × 10<sup>−9</sup> farads.",formula:""},
-  {id:95,category:"Capacitors & Capacitance",difficulty:"easy",type:"mcq",question:"One picofarad (1 pF) is equal to:",options:["1 × 10<sup>−9</sup> F","1 × 10<sup>−12</sup> F","1 × 10<sup>−6</sup> F","1 × 10<sup>−15</sup> F"],answer:1,explanation:"1 pF = 1 × 10<sup>−12</sup> farads.",formula:""},
-  {id:96,category:"Capacitors & Capacitance",difficulty:"medium",type:"mcq",question:"Which of the following factors does NOT affect the capacitance of a capacitor?",options:["Distance between plates","Area of the plates","Nature of the dielectric","Colour of the plates"],answer:3,explanation:"The colour of the plates has no effect on capacitance; area, distance and dielectric do.",formula:""},
-  {id:97,category:"Capacitors & Capacitance",difficulty:"medium",type:"mcq",question:"If the distance between the plates of a capacitor is decreased, the capacitance:",options:["Decreases","Increases","Remains the same","Becomes zero"],answer:1,explanation:"Capacitance increases when the plate separation is reduced.",formula:"C ∝ 1/d"},
-  {id:98,category:"Capacitors & Capacitance",difficulty:"medium",type:"mcq",question:"If the area of the plates of a capacitor is increased, the capacitance:",options:["Decreases","Increases","Remains the same","Becomes infinite"],answer:1,explanation:"Capacitance increases when the plate area is increased.",formula:"C ∝ A"},
-  {id:99,category:"Capacitors & Capacitance",difficulty:"medium",type:"mcq",question:"If the resistance in the charging circuit is negligible, the charging of a capacitor is:",options:["Very slow","Almost instantaneous","Impossible","Gradual over hours"],answer:1,explanation:"With negligible resistance, the capacitor charges almost instantaneously.",formula:""},
-  {id:100,category:"Capacitors & Capacitance",difficulty:"medium",type:"mcq",question:"During capacitor discharge, electrons flow from the negatively charged plate to the positively charged plate until:",options:["The capacitor explodes","The positive charge is completely neutralized","The dielectric melts","The battery is reconnected"],answer:1,explanation:"Discharge continues until the positive charge is neutralized.",formula:""},
+/* ---------- DP: Electric dipole ---------- */
+Q("DP","An electric dipole is a system of:","Two equal and opposite charges separated by a small distance","Two equal positive charges close together","A single isolated charge","Two magnets");
+Q("DP","The electric dipole moment is given by:","p = q × d","p = q/d","p = q + d","p = d/q");
+Q("DP","The dipole moment vector points from:","The negative charge to the positive charge","The positive charge to the negative charge","The centre to the negative charge","Left to right always");
+Q("DP","The electric dipole moment is a:","Vector quantity","Scalar quantity","Dimensionless number","Unit of charge");
+Q("DP","The SI unit of dipole moment is:","Coulomb metre (C m)","Coulomb per metre","Newton per coulomb","Volt");
+Q("DP","The midpoint between the charges +q and −q of a dipole is called the:","Centre of the dipole","Focus of the dipole","Pole of the dipole","Node of the dipole");
+Q("DP","Which molecule is a common example of an electric dipole?","Water (H₂O)","Helium","Argon","Neon");
+Q("DP","Microwave ovens heat food mainly by interacting with:","Water molecules, which are electric dipoles","Metal atoms in the food","Free protons","Air molecules only");
+Q("DP","Two charges of +2 μC and −2 μC are separated by 3 mm. The dipole moment is:","6 × 10⁻⁹ C m","6 × 10⁻⁶ C m","1.5 × 10⁻³ C m","0 C m","p = qd = (2 × 10⁻⁶)(3 × 10⁻³) = 6 × 10⁻⁹ C m.");
+Q("DP","The net charge of an electric dipole is:","Zero","Positive","Negative","Twice the charge magnitude");
+Q("DP","A dipole of moment 1 × 10⁻¹⁰ C m is made of charges of magnitude 5 × 10⁻⁹ C. The separation is:","0.02 m","0.5 m","5 m","2 × 10⁻²⁰ m");
+Q("DP","If the separation between the charges of a dipole is doubled (charge unchanged), the dipole moment:","Doubles","Halves","Is unchanged","Quadruples");
+Q("DP","Dipole moments play a crucial role in determining how molecules interact, affecting properties such as:","Solubility and boiling point","Atomic number","Mass number","Half-life");
+Q("DP","The behaviour of dielectric materials like plastics and ceramics in electric fields is influenced by:","The presence and alignment of dipoles","Free electrons in the material","The colour of the material","Their magnetic poles");
+Q("DP","The electric field of a dipole, with increasing distance, becomes:","Weaker","Stronger","Constant","Infinite");
 
-  // ===== ELECTRIC DIPOLES =====
-  {id:101,category:"Electric Dipoles",difficulty:"easy",type:"mcq",question:"An electric dipole is a system of two equal but _______ electric charges separated by a small distance.",options:["Similar","Opposite","Neutral","Variable"],answer:1,explanation:"A dipole consists of two equal but opposite charges separated by a small distance.",formula:""},
-  {id:102,category:"Electric Dipoles",difficulty:"easy",type:"mcq",question:"The electric dipole moment is a:",options:["Scalar quantity","Vector quantity","Tensor quantity","Dimensionless quantity"],answer:1,explanation:"The electric dipole moment is a vector quantity.",formula:""},
-  {id:103,category:"Electric Dipoles",difficulty:"medium",type:"mcq",question:"The electric dipole moment (p) is defined as the product of the magnitude of one charge (q) and:",options:["The distance vector (d) separating the charges","The square of the distance","The velocity of the charges","The mass of the charges"],answer:0,explanation:"Dipole moment p = qd, where d is the distance vector separating the charges.",formula:"p = qd"},
-  {id:104,category:"Electric Dipoles",difficulty:"medium",type:"mcq",question:"By default, the direction of the electric dipole moment in space is always from:",options:["Positive charge to negative charge","Negative charge to positive charge","Centre to positive charge","Centre to negative charge"],answer:1,explanation:"The dipole moment points from the negative charge toward the positive charge.",formula:""},
-  {id:105,category:"Electric Dipoles",difficulty:"medium",type:"mcq",question:"The midpoint between +q and −q in an electric dipole is called the:",options:["Pole","Centre of the dipole","Neutral point","Origin"],answer:1,explanation:"The midpoint between the two charges is the centre of the dipole.",formula:""},
-  {id:106,category:"Electric Dipoles",difficulty:"medium",type:"mcq",question:"Which of the following molecules is given as an example of an electric dipole?",options:["Oxygen (O₂)","Water (H₂O)","Nitrogen (N₂)","Hydrogen (H₂)"],answer:1,explanation:"Water (H₂O) is given as an example of an electric dipole.",formula:""},
-  {id:107,category:"Electric Dipoles",difficulty:"medium",type:"mcq",question:"In microwave ovens, the interaction of microwave radiation with _______ molecules heats food.",options:["Oxygen","Nitrogen","Water","Carbon dioxide"],answer:2,explanation:"Microwave radiation interacts with water molecules to heat food.",formula:""},
-  {id:108,category:"Electric Dipoles",difficulty:"hard",type:"mcq",question:"The behaviour of dielectric materials like plastics and ceramics in electric fields is influenced by:",options:["Free electrons","The presence and alignment of dipoles within them","Protons only","Neutrons only"],answer:1,explanation:"The alignment of dipoles within dielectrics determines their behaviour in electric fields.",formula:""},
-  {id:109,category:"Electric Dipoles",difficulty:"medium",type:"mcq",question:"Dipole moments play a crucial role in determining:",options:["Only electrical conductivity","How molecules interact with each other","Only thermal conductivity","Only magnetic properties"],answer:1,explanation:"Dipole moments affect how molecules interact with one another.",formula:""},
-  {id:110,category:"Electric Dipoles",difficulty:"medium",type:"mcq",question:"The electric field created by a dipole is:",options:["Strongest far from the charges and weakest near them","Strongest near the charges and weakens with increasing distance","Uniform everywhere","Zero everywhere"],answer:1,explanation:"The dipole field is strongest near the charges and weakens with distance.",formula:""},
-  {id:111,category:"Electric Dipoles",difficulty:"medium",type:"mcq",question:"Any system with separate positive and negative charges can be considered:",options:["A capacitor only","An electric dipole","A conductor","An insulator"],answer:1,explanation:"A system with separated positive and negative charges behaves as an electric dipole.",formula:""},
+/* ---------- CI: Conductors, insulators, semiconductors, bands ---------- */
+Q("CI","Conductors are materials that:","Allow electric charges to move easily through them","Strongly oppose the movement of electric charges","Have no electrons","Only conduct heat");
+Q("CI","In a conductor, the outer-shell electrons are:","Loosely bound to the nucleus, forming a sea of mobile electrons","Tightly bound to the nucleus","Absent","Bound in pairs to protons");
+Q("CI","Which of the following is a good conductor?","Copper","Glass","Rubber","Plywood");
+Q("CI","Insulators are materials that:","Strongly oppose the movement of electric charges","Conduct electricity very well","Have many free electrons","Are always metals");
+Q("CI","In insulators, the valence electrons are:","Tightly bound to atoms, leaving no free charge carriers","Free to move","Absent","Bound to neutrons");
+Q("CI","Which of the following is an insulator?","Glass","Copper","Silver","Aluminium");
+Q("CI","Semiconductors are materials whose electrical conductivity is:","Between that of conductors and insulators","Higher than that of conductors","Zero","Infinite");
+Q("CI","Which of the following is a semiconductor?","Silicon","Rubber","Copper","Glass");
+Q("CI","Germanium is best classified as a:","Semiconductor","Perfect insulator","Superconductor","Metal conductor");
+Q("CI","The two types of semiconductor are:","Intrinsic and extrinsic","Positive and negative","Primary and secondary","Direct and alternating");
+Q("CI","An intrinsic semiconductor is:","Pure","Impure (doped)","Always n-type","Always p-type");
+Q("CI","An extrinsic semiconductor is:","Impure (doped)","Pure","A perfect insulator","A superconductor");
+Q("CI","Materials are classified as conductors, insulators or semiconductors by their ability to:","Allow the movement of electric charges","Reflect light","Absorb heat","Float in water");
+Q("CI","The energy band gap is the energy difference between:","The top of the valence band and the bottom of the conduction band","The top of the conduction band and the nucleus","Two atoms in a crystal","The Fermi level and infinity");
+Q("CI","In a solid, the band in which electrons are normally bound to atoms is the:","Valence band","Conduction band","Forbidden band","Free band");
+Q("CI","The band in which electrons can move freely to conduct electricity is the:","Conduction band","Valence band","Forbidden band","Core band");
+Q("CI","The band gap of a conductor is:","None, or the bands overlap","Very large (above 5 eV)","Small (about 1 eV)","Exactly 3 eV");
+Q("CI","The band gap of a semiconductor is:","Small (typically below about 3 eV)","Very large (above 5 eV)","Zero","Infinite");
+Q("CI","The band gap of an insulator is:","Large (about 3–5 eV or more)","Zero","Small (about 0.1 eV)","Negative");
+Q("CI","The approximate band gap of silicon is:","1.1 eV","0.67 eV","5.5 eV","0 eV");
+Q("CI","The approximate band gap of germanium is:","0.67 eV","1.1 eV","5.5 eV","3.5 eV");
+Q("CI","The approximate band gap of diamond is:","5.5 eV","1.1 eV","0.67 eV","0 eV");
+Q("CI","Which material is an example of a good conductor with overlapping bands?","Copper, silver or gold","Diamond","Glass","Rubber");
+Q("CI","The conductivity of a semiconductor can be varied by:","Temperature, light or doping","Only its colour","Only its mass","Nothing at all");
+Q("CI","In insulators, electrons:","Rarely jump the band gap into the conduction band","Move freely into the conduction band","Have no valence band","Are all in the conduction band");
+Q("CI","The Fermi energy is the highest energy level occupied by electrons in a material at:","Absolute zero temperature (0 K)","Room temperature","The melting point","Infinite temperature");
+Q("CI","At 0 K, all quantum states below the Fermi energy are:","Completely filled","Completely empty","Half filled","Not defined");
+Q("CI","At 0 K, all states above the Fermi energy are:","Completely empty","Completely filled","Half filled","Occupied by protons");
+Q("CI","The Fermi level itself is the boundary between:","Occupied and unoccupied states","Protons and neutrons","Valence and core electrons","Metals and gases");
+Q("CI","In a conductor, the Fermi level lies:","Inside the conduction band","In the middle of a large band gap","Below the valence band","At infinity");
+Q("CI","In an intrinsic semiconductor, the Fermi level usually lies:","In the middle of the band gap","Inside the conduction band","Inside the valence band","Above the conduction band");
+Q("CI","When a semiconductor is doped n-type, the Fermi level shifts closer to the:","Conduction band","Valence band","Nucleus","Middle of the gap");
+Q("CI","When a semiconductor is doped p-type, the Fermi level shifts closer to the:","Valence band","Conduction band","Nucleus","Top of the conduction band");
+Q("CI","In an insulator, the Fermi level lies:","Deep inside a large band gap","Inside the conduction band","Inside the valence band","At the top of the valence band");
+Q("CI","Absolute zero (0 K) is equal to:","−273 °C (approximately)","0 °C","−100 °C","273 °C");
 
-  // ===== CALCULATION QUESTIONS =====
-  {id:112,category:"Coulomb's Law",difficulty:"hard",type:"calculation",question:"Two charges of 12 µC and 8 µC are separated by 10 cm in vacuum. Calculate the force between them (K = 9 × 10<sup>9</sup> N·m²/C²).",options:["863 N","86.4 N","864 N","8.64 N"],answer:1,explanation:"F = K·Q1·Q2/r². Q1=12×10⁻⁶, Q2=8×10⁻⁶, r=0.10 m. F = 9×10⁹ × 12×10⁻⁶ × 8×10⁻⁶ / (0.1)² = 864 / 0.01 × 10⁻³... = 86.4 N.",formula:"F = K·Q1·Q2/r²",solution:"(9×10⁹)(12×10⁻⁶)(8×10⁻⁶)/(0.10)² = 86.4 N",unit:"N"},
-  {id:113,category:"Coulomb's Law",difficulty:"hard",type:"calculation",question:"Two identical charges of 6 µC each are separated by a distance of 0.3 m in vacuum. What is the force between them (K = 9 × 10<sup>9</sup>)?",options:["3.6 N","36 N","360 N","0.36 N"],answer:0,explanation:"F = 9×10⁹ × (6×10⁻⁶)² / (0.3)² = 9×10⁹ × 36×10⁻¹² / 0.09 = 3.6 N.",formula:"F = K·Q1·Q2/r²",solution:"(9×10⁹)(6×10⁻⁶)(6×10⁻⁶)/(0.3)² = 3.6 N",unit:"N"},
-  {id:114,category:"Coulomb's Law",difficulty:"hard",type:"calculation",question:"A charge of 4 µC and a charge of −4 µC are 0.2 m apart. Determine the magnitude of the force between them (K = 9 × 10<sup>9</sup>).",options:["3.6 N","36 N","0.36 N","360 N"],answer:0,explanation:"Using magnitudes: F = 9×10⁹ × (4×10⁻⁶)² / (0.2)² = 9×10⁹ × 16×10⁻¹² / 0.04 = 3.6 N.",formula:"F = K·|Q1·Q2|/r²",solution:"(9×10⁹)(4×10⁻⁶)(4×10⁻⁶)/(0.2)² = 3.6 N",unit:"N"},
-  {id:115,category:"Electric Fields",difficulty:"hard",type:"calculation",question:"Calculate the electric field at a point 3 m from a 5 nC charge (K = 9 × 10<sup>9</sup>).",options:["5 N/C","15 N/C","1.5 N/C","50 N/C"],answer:0,explanation:"E = K·Q/r² = 9×10⁹ × 5×10⁻⁹ / 9 = 5 N/C.",formula:"E = K·Q/r²",solution:"(9×10⁹)(5×10⁻⁹)/(3)² = 5 N/C",unit:"N/C"},
-  {id:116,category:"Electric Fields",difficulty:"hard",type:"calculation",question:"A charge of 2 µC experiences a force of 6 N in an electric field. What is the electric field intensity?",options:["3 × 10<sup>6</sup> N/C","3 × 10<sup>5</sup> N/C","3 × 10<sup>7</sup> N/C","12 × 10<sup>6</sup> N/C"],answer:0,explanation:"E = F/Q = 6 / (2×10⁻⁶) = 3 × 10⁶ N/C.",formula:"E = F/Q",solution:"6 / (2×10⁻⁶) = 3 × 10⁶ N/C",unit:"N/C"},
-  {id:117,category:"Electric Fields",difficulty:"hard",type:"calculation",question:"A 3 µC charge is placed in an electric field of 5 × 10<sup>4</sup> N/C. What force does it experience?",options:["0.15 N","15 N","1.5 N","150 N"],answer:0,explanation:"F = E·Q = 5×10⁴ × 3×10⁻⁶ = 0.15 N.",formula:"F = E·Q",solution:"(5×10⁴)(3×10⁻⁶) = 0.15 N",unit:"N"},
-  {id:118,category:"Electric Fields",difficulty:"hard",type:"calculation",question:"What is the electric field intensity 2 m from a 4 nC point charge (K = 9 × 10<sup>9</sup>)?",options:["9 N/C","18 N/C","4.5 N/C","36 N/C"],answer:0,explanation:"E = 9×10⁹ × 4×10⁻⁹ / 4 = 9 N/C.",formula:"E = KQ/r²",solution:"(9×10⁹)(4×10⁻⁹)/(2)² = 9 N/C",unit:"N/C"},
-  {id:119,category:"Electric Potential",difficulty:"hard",type:"calculation",question:"Calculate the electric potential at a distance of 2 m from a charge of 4 µC (K = 9 × 10<sup>9</sup>).",options:["1.8 × 10<sup>4</sup> V","1.8 × 10<sup>3</sup> V","1.8 × 10<sup>5</sup> V","1.8 V"],answer:0,explanation:"V = KQ/r = 9×10⁹ × 4×10⁻⁶ / 2 = 1.8 × 10⁴ V.",formula:"V = KQ/r",solution:"(9×10⁹)(4×10⁻⁶)/2 = 1.8 × 10⁴ V",unit:"V"},
-  {id:120,category:"Electric Potential",difficulty:"hard",type:"calculation",question:"The electric potential at a point is 45 V. How much work is needed to move a charge of 2 C to that point?",options:["90 J","22.5 J","43 J","45 J"],answer:0,explanation:"V = W/Q, so W = V·Q = 45 × 2 = 90 J.",formula:"V = W/Q",solution:"W = V·Q = 45 × 2 = 90 J",unit:"J"},
-  {id:121,category:"Electric Potential",difficulty:"hard",type:"calculation",question:"A charge of 3 µC is moved to a point where the electric potential is 1.5 × 10<sup>4</sup> V. Find the work done.",options:["4.5 × 10<sup>−2</sup> J","4.5 × 10<sup>2</sup> J","4.5 J","0.045 × 10<sup>3</sup> J"],answer:0,explanation:"W = V·Q = 1.5×10⁴ × 3×10⁻⁶ = 4.5 × 10⁻² J.",formula:"W = V·Q",solution:"(1.5×10⁴)(3×10⁻⁶) = 4.5 × 10⁻² J",unit:"J"},
-  {id:122,category:"Capacitors & Capacitance",difficulty:"hard",type:"calculation",question:"A capacitor stores 24 µC of charge when the voltage across it is 12 V. What is its capacitance?",options:["2 µF","2 F","288 µF","0.5 µF"],answer:0,explanation:"C = Q/V = 24×10⁻⁶ / 12 = 2 × 10⁻⁶ F = 2 µF.",formula:"C = Q/V",solution:"(24×10⁻⁶)/12 = 2 × 10⁻⁶ F = 2 µF",unit:"F"},
-  {id:123,category:"Capacitors & Capacitance",difficulty:"hard",type:"calculation",question:"A 10 µF capacitor is connected to a 6 V battery. How much charge does it store?",options:["60 µC","1.67 µC","60 C","0.6 µC"],answer:0,explanation:"Q = C·V = 10×10⁻⁶ × 6 = 60 × 10⁻⁶ C = 60 µC.",formula:"Q = C·V",solution:"(10×10⁻⁶)(6) = 60 µC",unit:"C"},
-  {id:124,category:"Capacitors & Capacitance",difficulty:"hard",type:"calculation",question:"A capacitor of 5 µF stores 50 µC of charge. What is the voltage across it?",options:["10 V","250 V","0.1 V","55 V"],answer:0,explanation:"V = Q/C = 50×10⁻⁶ / 5×10⁻⁶ = 10 V.",formula:"V = Q/C",solution:"(50×10⁻⁶)/(5×10⁻⁶) = 10 V",unit:"V"},
-  {id:125,category:"Electric Dipoles",difficulty:"hard",type:"calculation",question:"Two charges of magnitude 2 × 10<sup>−6</sup> C and opposite sign are separated by 0.05 m. What is the electric dipole moment?",options:["1 × 10<sup>−7</sup> C·m","1 × 10<sup>−8</sup> C·m","2 × 10<sup>−8</sup> C·m","4 × 10<sup>−7</sup> C·m"],answer:0,explanation:"p = q·d = 2×10⁻⁶ × 0.05 = 1 × 10⁻⁷ C·m.",formula:"p = qd",solution:"(2×10⁻⁶)(0.05) = 1 × 10⁻⁷ C·m",unit:"C·m"}
-];
+/* ---------- CU: Current and drift velocity ---------- */
+Q("CU","Electric current is defined as:","The time rate of flow of net electric charge through a cross-section","The force per unit charge","The energy per unit charge","The charge stored per volt");
+Q("CU","Mathematically, the current I is given by:","I = ΔQ/Δt","I = ΔQ × Δt","I = Δt/ΔQ","I = ΔQ/Δt²");
+Q("CU","The SI unit of electric current is the:","Ampere","Coulomb","Volt","Ohm");
+Q("CU","If a constant current I flows for a time t, the charge that flows is:","Q = It","Q = I/t","Q = t/I","Q = I + t");
+Q("CU","Conventional current flows from:","The positive terminal to the negative terminal","The negative terminal to the positive terminal","Either terminal at random","The middle of the battery");
+Q("CU","In a metal wire, the actual physical flow of electrons is:","Opposite to the direction of conventional current","In the same direction as conventional current","Perpendicular to conventional current","Zero");
+Q("CU","The drift velocity is the average velocity of free electrons:","In a direction opposite to that of the electric field in the metal","In the direction of the electric field in the metal","Due to random thermal motion only","At the speed of light");
+Q("CU","The relationship between current I and drift velocity v is:","I = nAve","I = nAe/v","I = nve/A","I = Ave/n");
+Q("CU","In the equation I = nAve, the symbol n represents:","The number of free electrons per unit volume","The number of turns","The refractive index","The number of wires");
+Q("CU","In the equation I = nAve, the symbol A represents:","The cross-sectional area of the wire","The atomic mass","The acceleration of electrons","The amplitude of the current");
+Q("CU","The drift velocity can be written as:","v = I/(nAe)","v = nAe/I","v = IA/(ne)","v = I·n·A·e");
+Q("CU","Current density J is defined as:","The current per unit cross-sectional area","The current per unit length","The charge per unit volume","The current per unit time");
+Q("CU","The current density can be written in terms of drift velocity as:","J = nve","J = nAve","J = ve/n","J = n/(ve)");
+Q("CU","The SI unit of current density is:","A/m²","A m²","A/m","C/m³");
+Q("CU","Compared with the random thermal speed of electrons (about 10⁵ m/s), the drift velocity is:","Very much smaller","About the same","Very much larger","Equal to the speed of light");
+Q("CU","Calculate the drift velocity in a copper wire of cross-sectional area 1.00 mm² carrying 2.0 A. Take n = 1 × 10²⁹ m⁻³ and e = 1.6 × 10⁻¹⁹ C.","1.25 × 10⁻⁴ m/s","1.25 × 10⁴ m/s","8 × 10⁻⁵ m/s","2 × 10⁻⁴ m/s","v = I/(nAe) = 2.0/[(10²⁹)(10⁻⁶)(1.6×10⁻¹⁹)] = 1.25 × 10⁻⁴ m/s.");
+Q("CU","A current of 3 A flows for 10 s. The charge that passes is:","30 C","3.3 C","13 C","0.3 C");
+Q("CU","60 C of charge passes a point in 20 s. The current is:","3 A","1200 A","0.33 A","80 A");
+Q("CU","How long does it take for 12 C of charge to flow at a current of 4 A?","3 s","48 s","0.33 s","16 s");
+Q("CU","If the current in a wire is doubled (same wire), the drift velocity:","Doubles","Halves","Is unchanged","Quadruples");
+Q("CU","For the same current and material, a wire with a larger cross-sectional area has a drift velocity that is:","Smaller","Larger","The same","Zero");
+Q("CU","A current of 2 A flows through a wire of cross-sectional area 1 mm². The current density is:","2 × 10⁶ A/m²","2 × 10⁻⁶ A/m²","2 × 10³ A/m²","5 × 10⁻⁷ A/m²");
+Q("CU","A copper wire of diameter 0.40 mm carries a current of 3 mA. The current density is approximately:","2.4 × 10⁴ A/m²","9.5 × 10³ A/m²","4.8 × 10⁴ A/m²","7.5 × 10⁻³ A/m²","A = π(0.20×10⁻³)² ≈ 1.26×10⁻⁷ m², so J = I/A ≈ 2.4 × 10⁴ A/m².");
+Q("CU","Approximately how many electrons pass a point each second in a current of 1 A?","6.25 × 10¹⁸","1.6 × 10⁻¹⁹","1 × 10⁹","9 × 10⁹");
+Q("CU","In the notes, the number of free electrons per unit volume in copper is taken as about:","1 × 10²⁹ per cubic metre","1 × 10⁹ per cubic metre","1 × 10⁻¹⁹ per cubic metre","1 × 10¹² per cubic metre");
 
-/* ============================================================
-   PHY 102 QUIZ APPLICATION LOGIC
-   ============================================================ */
+/* ---------- VP: Voltage, potential difference, EMF ---------- */
+Q("VP","Potential difference between two points is the:","Work done per unit charge in moving a charge between the two points","Charge per unit time between the points","Force between two charges","Resistance between the two points");
+Q("VP","Potential difference (voltage) is calculated as:","V = W/Q","V = WQ","V = Q/W","V = W/Q²");
+Q("VP","The SI unit of potential difference is the:","Volt","Ampere","Ohm","Watt");
+Q("VP","One volt is equal to:","One joule per coulomb","One coulomb per joule","One watt per second","One newton per metre");
+Q("VP","Potential difference is sometimes described as the:","Electrical pressure driving the current","Electrical friction","Number of electrons in a wire","Speed of electrons");
+Q("VP","Potential difference is measured using a:","Voltmeter","Ammeter","Ohmmeter only for current","Galvanometer in series");
+Q("VP","A voltmeter is always connected:","In parallel across the two points","In series with the component","Between the battery and ground only","Inside the battery");
+Q("VP","P.d. can also be defined as:","Energy dissipated per unit charge","Charge per unit energy","Power per unit time","Current per unit resistance");
+Q("VP","P.d. is also equal to:","Power divided by current","Power multiplied by current","Current divided by power","Power divided by resistance only");
+Q("VP","The electrical energy dissipated when a charge Q passes through a p.d. V is:","Q × V","Q ÷ V","V ÷ Q","Q + V");
+Q("VP","The electrical energy dissipated by a constant current I flowing under p.d. V for a time t is:","IVt","I/(Vt)","V/(It)","It/V");
+Q("VP","3 V is the p.d. when 12 J of energy is dissipated moving a charge of:","4 C","36 C","0.25 C","9 C");
+Q("VP","240 J of energy is used moving 20 C of charge between two points. The p.d. is:","12 V","4800 V","0.083 V","220 V");
+Q("VP","How much energy is needed to move 5 C through a p.d. of 6 V?","30 J","1.2 J","11 J","0.83 J");
+Q("VP","The e.m.f. of a source is defined as the:","P.d. across its terminals when it is in an open circuit","Current it supplies to any circuit","Total resistance of the circuit","Heat produced inside it");
+Q("VP","Which of the following is a source of potential difference?","A battery","A resistor","A voltmeter","A fuse");
+Q("VP","In direct current (d.c.), the voltage:","Remains constant in one direction","Periodically reverses direction","Is always zero","Increases with time");
+Q("VP","Which of the following provides alternating current (a.c.)?","Mains electricity","A battery","A dry cell","A solar cell alone");
+Q("VP","Alternating current (a.c.) is a type of voltage that:","Periodically reverses direction","Remains constant in one direction","Is only produced by batteries","Cannot power appliances");
+Q("VP","Which of the following provides direct current (d.c.)?","A battery","Mains electricity","A transformer","A generator's mains output");
 
-/* ---------- CATEGORY DEFINITIONS ---------- */
-const CATEGORIES = [
-  {name:"Forces in Nature",icon:"&#127757;",desc:"Gravity, weak, electromagnetic, strong"},
-  {name:"Electrostatics",icon:"&#9889;",desc:"Static electricity & phenomena"},
-  {name:"Electric Charges",icon:"&#11036;",desc:"Types, properties & units"},
-  {name:"Methods of Charging",icon:"&#128295;",desc:"Friction, contact & induction"},
-  {name:"Coulomb's Law",icon:"&#8709;",desc:"Force between charges"},
-  {name:"Electric Fields",icon:"&#10148;",desc:"Field intensity & lines"},
-  {name:"Electric Potential",icon:"&#9889;",desc:"Voltage & potential energy"},
-  {name:"Capacitors & Capacitance",icon:"&#128308;",desc:"Storing charge & farads"},
-  {name:"Electric Dipoles",icon:"&#128261;",desc:"Dipole moment p = qd"},
-  {name:"Mixed PHY 102",icon:"&#128221;",desc:"All topics combined"}
-];
+/* ---------- RS: Resistance and Ohm's law ---------- */
+Q("RS","Resistance is:","The opposition a material offers to the flow of electric current","The rate of flow of charge","The energy stored per unit charge","The force between two charges");
+Q("RS","The SI unit of resistance is the:","Ohm","Ampere","Volt","Siemens");
+Q("RS","One ohm is the resistance of a conductor in which:","A p.d. of 1 V produces a current of 1 A","A p.d. of 1 V produces a current of 2 A","A current of 1 A dissipates 1 kW","A charge of 1 C is stored");
+Q("RS","The resistance of a conductor is defined as:","The ratio of the p.d. across it to the current through it","The ratio of the current through it to the p.d. across it","The product of the p.d. and the current","The difference between p.d. and current");
+Q("RS","Which of the following does NOT affect the resistance of a conductor?","The colour of the conductor","Its length","Its cross-sectional area","Its material and temperature");
+Q("RS","The resistance of a wire increases as its:","Length increases","Length decreases","Cross-sectional area increases","Number of electrons decreases");
+Q("RS","The resistance of a wire decreases as its:","Cross-sectional area increases","Length increases","Temperature increases (for most conductors)","Length is doubled");
+Q("RS","For most conductors, resistance with increasing temperature:","Increases","Decreases","Stays the same","Becomes zero");
+Q("RS","The resistance of a wire is proportional to:","Length/area","Area/length","Length × area","Length + area");
+Q("RS","The expression that relates resistance R, resistivity ρ, length L and area A is:","R = ρL/A","R = ρA/L","R = L/(ρA)","R = ρLA");
+Q("RS","The resistivity of a material can be found from:","ρ = RA/L","ρ = RL/A","ρ = L/(RA)","ρ = R/(AL)");
+Q("RS","The SI unit of resistivity is the:","Ohm metre (Ω m)","Ohm per metre","Siemens","Ohm");
+Q("RS","Resistivity of a material depends on:","The material and its temperature","The shape and size of the sample","Only the length of the sample","Only the cross-sectional area");
+Q("RS","Which quantity is independent of the shape and size of a sample of material?","Resistivity","Resistance","Current","Power");
+Q("RS","The reciprocal of resistance is called:","Conductance","Resistivity","Capacitance","Inductance");
+Q("RS","The SI unit of conductance is the:","Siemens","Ohm","Farad","Henry");
+Q("RS","The conductance of a 5 Ω resistor is:","0.2 S","5 S","25 S","0.5 S");
+Q("RS","Ohm's law states that the steady current through a conductor is directly proportional to the p.d. across it, provided:","The temperature and other physical conditions remain constant","The length of the wire is doubled","The current is alternating","The material is an insulator");
+Q("RS","A conductor that obeys Ohm's law is called:","An ohmic conductor","A non-ohmic conductor","A semiconductor only","A dielectric");
+Q("RS","The current–voltage (I–V) graph of an ohmic conductor is:","A straight line passing through the origin","A curve passing through the origin","A horizontal line","A straight line not passing through the origin");
+Q("RS","On a voltage–current (V–I) graph of an ohmic conductor, the slope equals:","The resistance R","The conductance G","The power","The charge");
+Q("RS","Which of the following is a non-ohmic device?","A junction diode","A copper wire at constant temperature","A metal resistor at constant temperature","A nichrome wire at constant temperature");
+Q("RS","Which of the following is NOT listed as a non-ohmic conductor?","A metal wire at constant temperature","Thermionic diode","Photocell","Dilute sulphuric acid");
+Q("RS","The expression R = V/I is:","The definition of resistance, not itself a statement of Ohm's law","The statement of Ohm's law for all conductors","Valid only for a.c.","Valid only for insulators");
+Q("RS","A wire of resistivity 1.68 × 10⁻⁸ Ω m is 10 m long with a cross-sectional area of 1 × 10⁻⁶ m². Its resistance is:","0.168 Ω","1.68 Ω","0.0168 Ω","16.8 Ω","R = ρL/A = (1.68×10⁻⁸)(10)/(1×10⁻⁶) = 0.168 Ω.");
+Q("RS","A 5 m wire has a cross-sectional area of 2 × 10⁻⁶ m² and a resistance of 0.25 Ω. Its resistivity is:","1 × 10⁻⁷ Ω m","1 × 10⁻⁵ Ω m","6.25 × 10⁶ Ω m","2.5 × 10⁻⁷ Ω m","ρ = RA/L = (0.25)(2×10⁻⁶)/5 = 1 × 10⁻⁷ Ω m.");
+Q("RS","If the length of a wire is doubled (same material and area), its resistance:","Doubles","Halves","Is unchanged","Quadruples");
+Q("RS","If the cross-sectional area of a wire is doubled (same length and material), its resistance:","Halves","Doubles","Is unchanged","Quadruples");
+Q("RS","If the radius of a wire is doubled (same length and material), its resistance becomes:","One quarter","One half","Double","Four times");
+Q("RS","A wire is stretched to twice its original length with its volume constant. Its resistance becomes:","Four times","Double","Half","One quarter");
+Q("RS","The current through a 20 Ω resistor connected to a 240 V supply is:","12 A","4800 A","0.083 A","220 A");
+Q("RS","A p.d. of 12 V drives a current of 0.5 A. The resistance is:","24 Ω","6 Ω","0.042 Ω","12.5 Ω");
+Q("RS","A current of 3 A flows through a 4 Ω resistor. The p.d. across it is:","12 V","0.75 V","1.33 V","7 V");
+Q("RS","Which of the following is an application of resistance?","Heating elements","Increasing the mass of a wire","Storing charge","Producing gravitational force");
+Q("RS","Which of these is a use of resistors in circuits?","Voltage division","Producing e.m.f.","Making current alternate","Creating magnetic monopoles");
+Q("RS","Ohm's law is used in the design of safety devices such as:","Fuses and circuit breakers","Compasses","Telescopes","Barometers");
+Q("RS","A limitation of Ohm's law is that it is only valid when:","The temperature remains constant","The current is very large","The material is an insulator","The voltage is alternating");
+Q("RS","The ohmic conductor's resistance at constant temperature is:","Independent of current or p.d.","Directly proportional to the current","Inversely proportional to the p.d.","Always zero");
 
-const CAT_SELECT = "All Categories";
+/* ---------- SP: Series and parallel resistors ---------- */
+Q("SP","In a series circuit, the current through each resistor is:","The same","Different for each resistor","Zero in the last resistor","Divided equally");
+Q("SP","In a series circuit, the total voltage across the combination equals:","The sum of the voltage drops across each resistor","The largest single voltage drop","The average voltage drop","The smallest voltage drop");
+Q("SP","The equivalent resistance of resistors in series is:","R₁ + R₂ + R₃ + …","1/R₁ + 1/R₂ + 1/R₃ + …","The smallest resistance","R₁R₂/(R₁ + R₂) always");
+Q("SP","The equivalent resistance of resistors in parallel is given by:","1/R = 1/R₁ + 1/R₂ + 1/R₃ + …","R = R₁ + R₂ + R₃ + …","R = R₁R₂R₃","R = R₁ − R₂");
+Q("SP","In a parallel circuit, the p.d. across each resistor is:","The same","Different for each resistor","Zero","Divided among them");
+Q("SP","The equivalent resistance of resistors in parallel is:","Always less than the smallest individual resistance","Always greater than the largest resistance","Equal to the average resistance","Equal to the sum of the resistances");
+Q("SP","Compared with each individual resistor, the equivalent resistance of a series combination is:","Greater than any individual resistance","Less than the smallest individual resistance","Equal to the smallest resistance","Always zero");
+Q("SP","At a junction in a parallel circuit, the total current entering equals:","The sum of the currents leaving through the branches","The largest branch current","The average branch current","Zero always");
+Q("SP","The rule that current entering a junction equals current leaving it is based on the conservation of:","Charge","Energy","Momentum","Mass");
+Q("SP","Resistors of 2 Ω, 6 Ω and 9 Ω are connected in series. The equivalent resistance is:","17 Ω","1.29 Ω","54 Ω","6 Ω");
+Q("SP","Resistors of 2 Ω, 6 Ω and 9 Ω in series are connected to a 120 V battery. The current is approximately:","7.06 A","93.3 A","0.14 A","60 A","I = V/R = 120/17 ≈ 7.06 A.");
+Q("SP","Resistors of 2 Ω, 6 Ω and 9 Ω are connected in parallel. The equivalent resistance is approximately:","1.29 Ω","17 Ω","5.67 Ω","0.78 Ω","1/R = 1/2 + 1/6 + 1/9 = 14/18 = 7/9, so R = 9/7 ≈ 1.29 Ω.");
+Q("SP","Resistors of 2 Ω, 6 Ω and 9 Ω are connected in parallel across a 120 V battery. The current through the 2 Ω resistor is:","60 A","240 A","20 A","13.3 A");
+Q("SP","In the same parallel circuit (120 V), the current through the 6 Ω resistor is:","20 A","30 A","60 A","13.3 A","I = V/R = 120/6 = 20 A.");
+Q("SP","In the same parallel circuit (120 V), the current through the 9 Ω resistor is approximately:","13.3 A","20 A","60 A","1.1 A");
+Q("SP","The total current drawn from the 120 V battery by the parallel combination of 2 Ω, 6 Ω and 9 Ω is approximately:","93.3 A","7.06 A","120 A","60 A","Sum of branch currents: 60 + 20 + 13.3 = 93.3 A.");
+Q("SP","Two 10 Ω resistors are connected in parallel. The equivalent resistance is:","5 Ω","20 Ω","10 Ω","0.2 Ω");
+Q("SP","Three 6 Ω resistors are connected in parallel. The equivalent resistance is:","2 Ω","18 Ω","6 Ω","0.5 Ω");
+Q("SP","A 4 Ω and a 12 Ω resistor are connected in parallel. The equivalent resistance is:","3 Ω","16 Ω","8 Ω","48 Ω");
+Q("SP","A 5 Ω and a 20 Ω resistor are connected in parallel. The equivalent resistance is:","4 Ω","25 Ω","12.5 Ω","100 Ω");
+Q("SP","A 3 Ω and a 6 Ω resistor are in series across a 12 V supply. The current is:","1.33 A","4 A","2 A","0.75 A");
+Q("SP","A 3 Ω and a 6 Ω resistor are in series across a 12 V supply. The voltage across the 6 Ω resistor is:","8 V","4 V","6 V","12 V");
+Q("SP","Household appliances are usually connected in parallel so that:","Each receives the full supply voltage and can work independently","Each receives a fraction of the supply voltage","The current through each is the same","They all switch off together");
 
-/* ---------- STATE ---------- */
-let currentView = "dashboard";
-let selectedCategory = "All Categories";
-let selectedDifficulty = "mixed";
-let selectedCount = 10;
-let selectedMode = "learning";
-let activeQuestions = [];
-let currentIndex = 0;
-let userAnswers = [];
-let markedForReview = [];
-let quizStarted = false;
-let timerInterval = null;
-let timeUsed = 0;
-let lastResult = null;
+/* ---------- PW: Power and energy ---------- */
+Q("PW","Electrical power is:","The rate of energy consumption in a circuit","The total charge stored","The force on a charge","The ratio of voltage to current");
+Q("PW","Which of these expressions gives electrical power?","P = VI","P = V/I","P = I/V","P = V + I");
+Q("PW","Electrical power can also be written as:","P = I²R","P = IR²","P = R/I²","P = I/R²");
+Q("PW","Another expression for electrical power, in terms of voltage and resistance, is:","P = V²/R","P = VR²","P = R/V²","P = R²/V");
+Q("PW","The SI unit of power is the:","Watt","Joule","Volt","Ampere");
+Q("PW","The energy used by an appliance is given by:","E = Pt = VIt","E = P/t","E = t/P","E = P + t");
+Q("PW","The commercial unit of electrical energy is the:","Kilowatt-hour (kWh)","Kilowatt","Watt-second per hour squared","Joule per second");
+Q("PW","1 kWh is equal to:","3.6 × 10⁶ J","3.6 × 10³ J","1 × 10³ J","3.6 × 10⁹ J","1000 W × 3600 s = 3,600,000 J.");
+Q("PW","Electricity customers are charged according to their consumption of:","Energy (kWh)","Voltage only","Power rating only","Current only");
+Q("PW","The total energy used by an appliance is its power consumption multiplied by:","The time it is on","Its resistance","Its mass","Its voltage rating only");
+Q("PW","A current of 0.9 A is maintained in a 160 Ω resistor. The power dissipated is:","129.6 W","144 W","1.4 W","177.8 W","P = I²R = (0.9)²(160) = 129.6 W.");
+Q("PW","A current of 0.9 A is maintained in a 160 Ω resistor for 3 hours. The heat energy developed is approximately:","1.4 × 10⁶ J","1.3 × 10⁴ J","4.7 × 10² J","3.9 × 10⁴ J","E = Pt = 129.6 × (3 × 3600) ≈ 1.4 × 10⁶ J.");
+Q("PW","An electric fan draws 2.0 A from a 220 V source. Its power rating is:","440 W","110 W","220 W","0.009 W");
+Q("PW","An electric fan draws 2.0 A from a 220 V source. Its electrical resistance is:","110 Ω","440 Ω","0.009 Ω","11 Ω","R = V/I = 220/2 = 110 Ω.");
+Q("PW","An electric fan rated 440 W operates continuously for 30 days. The energy used is approximately:","316.8 kWh","13.2 kWh","440 kWh","31.7 kWh","E = 0.44 kW × (30 × 24 h) = 316.8 kWh.");
+Q("PW","If the fan uses 316.8 kWh and electricity costs a hypothetical ₦10 per kWh, the cost is approximately:","₦3,168","₦316.80","₦31,680","₦31.68");
+Q("PW","A 100 W bulb is used for 10 hours. The energy consumed is:","1 kWh","10 kWh","0.1 kWh","100 kWh");
+Q("PW","A 2 kW heater runs for 3 hours. The energy consumed is:","6 kWh","0.67 kWh","5 kWh","1.5 kWh");
+Q("PW","A 60 W bulb operates on a 240 V supply. The current drawn is:","0.25 A","4 A","14 400 A","0.5 A");
+Q("PW","The power dissipated in a 10 Ω resistor carrying 3 A is:","90 W","30 W","33 W","0.9 W");
+Q("PW","A device operating at 12 V and 2 A has a power of:","24 W","6 W","10 W","14 W");
 
-const STORAGE_KEY = "phy102_progress_v1";
+/* ---------- KL: Kirchhoff's laws ---------- */
+Q("KL","Kirchhoff's laws are used to find:","The currents flowing in different parts of a network","The mass of a conductor","The charge of an electron","The permittivity of free space");
+Q("KL","Kirchhoff's first law states that the algebraic sum of the currents entering a point in a circuit is:","Zero","Equal to the battery voltage","Equal to the total resistance","Infinite");
+Q("KL","Kirchhoff's first law is written as:","ΣI = 0","ΣV = I","ΣR = 0","ΣQ = V");
+Q("KL","Kirchhoff's first law follows from the conservation of:","Charge","Energy","Momentum","Mass");
+Q("KL","Kirchhoff's second law follows from the conservation of:","Energy","Charge","Momentum","Mass");
+Q("KL","Kirchhoff's second law states that around a closed loop, the algebraic sum of the e.m.f.s is equal to:","The algebraic sum of the products of current and resistance","The total current","The total power only","Zero always");
+Q("KL","In applying Kirchhoff's first law, a current is taken as positive if it:","Flows into the point","Flows out of the point","Is alternating","Is less than 1 A");
+Q("KL","Currents of 5 A and 3 A flow into a junction and one wire carries current away. The current in that wire is:","8 A","2 A","15 A","1.67 A");
+Q("KL","A current of 10 A flows into a junction and splits into two wires. If one carries 4 A, the other carries:","6 A","14 A","40 A","2.5 A");
+Q("KL","A 12 V battery is connected in series with 2 Ω and 4 Ω resistors. Using Kirchhoff's second law, the current is:","2 A","1 A","6 A","0.5 A");
 
-/* ---------- HELPERS ---------- */
-function $(id){return document.getElementById(id);}
+/* ---------- LF: Lorentz force and charges in fields ---------- */
+Q("LF","The Lorentz force is the:","Total force on a charged particle in electric and magnetic fields","Force between two masses","Force on a neutral particle in a magnetic field","Force between two magnets only");
+Q("LF","The Lorentz force is named after the Dutch physicist:","Hendrik Lorentz","Charles Coulomb","Andre-Marie Ampere","Jean-Baptiste Biot");
+Q("LF","The Lorentz force on a charge q moving with velocity v in fields E and B is:","F = q(E + v × B)","F = q(E − v × B)","F = qE × vB","F = q/(E + vB)");
+Q("LF","The Lorentz force is a:","Vector quantity","Scalar quantity","Dimensionless number","Unit of charge");
+Q("LF","When only an electric field is present, the force on a charge is:","F = qE","F = qvB","F = qv/E","F = 0");
+Q("LF","The electric force qE acts on:","Both moving and stationary charges","Only moving charges","Only stationary charges","Only neutral particles");
+Q("LF","The magnetic force on a charge acts only when the charge is:","Moving (with a component of velocity perpendicular to B)","At rest","Neutral","Moving parallel to B");
+Q("LF","The magnitude of the magnetic force on a moving charge is:","F = qvB sinθ","F = qvB cosθ","F = qv/B","F = qB/v");
+Q("LF","In F = qvB sinθ, the angle θ is the angle between:","The velocity and the magnetic field","The force and the velocity","The charge and the field","The electric and magnetic fields");
+Q("LF","If a charged particle moves perpendicular to a magnetic field, the force magnitude is:","F = qvB","F = 0","F = qv/B","F = qvB/2");
+Q("LF","If a charged particle moves parallel to a magnetic field, the magnetic force is:","Zero","Maximum","qvB","Infinite");
+Q("LF","The SI unit of magnetic flux density B is the:","Tesla","Weber","Henry","Farad");
+Q("LF","The direction of the magnetic force on a moving charge is:","Perpendicular to both v and B","Parallel to v","Parallel to B","Always along the electric field");
+Q("LF","In the right-hand rule for F = q(v × B), the thumb points in the direction of:","The force","The velocity","The magnetic field","The current in the wire");
+Q("LF","In Fleming's left-hand rule, the thumb represents the direction of:","Motion (force)","The magnetic field","The current","The charge");
+Q("LF","In Fleming's left-hand rule, the first finger represents the direction of:","The magnetic field","The force","The current","The velocity of the field");
+Q("LF","The symbol × in v × B denotes:","The vector (cross) product","Ordinary multiplication only","Division","The scalar (dot) product");
+Q("LF","The magnitude of the vector product v × B is:","vB sinθ","vB cosθ","v/B","vB tanθ");
+Q("LF","A proton moves at 3.0 × 10⁷ m/s perpendicular to a uniform magnetic field of 2.5 T. The force on it is (e = 1.6 × 10⁻¹⁹ C):","1.2 × 10⁻¹¹ N","1.2 × 10⁻¹⁹ N","4.8 × 10⁻¹² N","1.2 × 10⁻³ N","F = qvB sin90° = (1.6×10⁻¹⁹)(3.0×10⁷)(2.5) = 1.2 × 10⁻¹¹ N.");
+Q("LF","An electron moves at 2 × 10⁶ m/s perpendicular to a magnetic field of 0.5 T. The force on it is:","1.6 × 10⁻¹³ N","3.2 × 10⁻¹³ N","1.6 × 10⁻¹⁹ N","6.4 × 10⁻²⁶ N");
+Q("LF","A charge of 2 μC moves at 100 m/s at 30° to a magnetic field of 0.3 T. The force on it is:","3 × 10⁻⁵ N","6 × 10⁻⁵ N","5.2 × 10⁻⁵ N","1.5 × 10⁻⁵ N","F = (2×10⁻⁶)(100)(0.3)(sin30°) = 3 × 10⁻⁵ N.");
+Q("LF","The magnetic force on a moving charge does no work because it is:","Always perpendicular to the velocity","Always parallel to the velocity","Zero for all charges","Always in the direction of the field");
+Q("LF","A charged particle moving perpendicular to a uniform magnetic field follows:","A circular path","A straight line","A parabola","A spiral outward forever");
+Q("LF","Compared with a positive charge, a negative charge with the same velocity in the same magnetic field experiences a magnetic force that is:","In the opposite direction","In the same direction","Zero","Larger in magnitude");
+Q("LF","When a particle of charge q is accelerated through a p.d. V, the energy gained is:","E = qV","E = q/V","E = V/q","E = qV²");
+Q("LF","When an electron is accelerated through a p.d. of one volt, the energy gained is:","1 electron-volt (1 eV)","1 joule","1 watt","1 kWh");
+Q("LF","One electron-volt is equal to approximately:","1.6 × 10⁻¹⁹ J","1.6 × 10⁻¹⁴ J","1 J","9 × 10⁹ J");
+Q("LF","An electron is accelerated through a p.d. of 100 V. The energy gained is:","100 eV (1.6 × 10⁻¹⁷ J)","1 eV","1.6 × 10⁻¹⁹ J","10 eV");
+Q("LF","The acceleration of a charged particle of mass m in an electric field E is a = qE/m. This follows from:","F = ma and F = qE","F = qvB and F = ma","F = kQ₁Q₂/r² and F = ma","V = IR and F = ma");
+Q("LF","A moving charge in an electric field and a magnetic field experiences a force that combines both. This combined expression is used when:","Both electric and magnetic fields are present","Only a gravitational field is present","Only a magnetic field is present","The charge is stationary and no fields exist");
 
-function shuffle(arr){
-  const a = arr.slice();
-  for(let i=a.length-1;i>0;i--){
-    const j = Math.floor(Math.random()*(i+1));
-    [a[i],a[j]]=[a[j],a[i]];
-  }
-  return a;
-}
+/* ---------- BS: Biot-Savart and Ampere ---------- */
+Q("BS","The Biot–Savart law describes the magnetic field:","Generated by a small segment of a current-carrying wire","Of a permanent magnet only","Due to a stationary charge","Inside a capacitor");
+Q("BS","The Biot–Savart law for magnetic fields is analogous to which law for electric fields?","Coulomb's law","Ohm's law","Faraday's law","Lenz's law");
+Q("BS","The Biot–Savart law gives the magnetic field dB at a point due to a small segment dl as:","dB = μ₀I dl sinθ/(4πr²)","dB = μ₀I dl sinθ/(4πr)","dB = μ₀ dl/(4πIr²)","dB = 4πr²/(μ₀I dl sinθ)");
+Q("BS","In the Biot–Savart law, μ₀ is the:","Permeability of free space","Permittivity of free space","Resistivity of free space","Conductivity of free space");
+Q("BS","The value of μ₀ is:","4π × 10⁻⁷ T m/A","4π × 10⁷ T m/A","8.85 × 10⁻¹² T m/A","9 × 10⁹ T m/A");
+Q("BS","The magnetic field from a small current element varies with the distance r as:","1/r²","1/r","r²","r");
+Q("BS","In the Biot–Savart law, θ is the angle between:","The current element dl and the displacement vector r","The wire and the ground","The current and the voltage","The field and the resistor");
+Q("BS","The magnetic field contribution dB from a current element is greatest when θ equals:","90°","0°","45°","180°");
+Q("BS","The magnetic field contribution dB from a current element is zero when θ equals:","0°","90°","45°","60°");
+Q("BS","In applying the Biot–Savart law to a circular loop, the angle θ between dl and r is:","90° for all elements","0° for all elements","45° for all elements","Varying around the loop");
+Q("BS","For a circular coil of N turns and radius r, the total length of wire around which dl is integrated is:","2πrN","πr²N","2πr/N","4πrN");
+Q("BS","The magnetic field at the centre of a circular coil with N turns, radius r and current I is:","B = μ₀NI/(2r)","B = μ₀NI/(2πr)","B = μ₀NI r/2","B = μ₀I/(2πrN)");
+Q("BS","Which statement about the magnetic field near a long straight current-carrying wire is correct?","It is inversely proportional to the distance from the wire","It is directly proportional to the distance from the wire","It is independent of the distance","It is inversely proportional to the square of the distance");
+Q("BS","The magnetic field at a distance r from a long straight wire carrying current I is:","B = μ₀I/(2πr)","B = μ₀I/(2πr²)","B = μ₀I/(4πr)","B = 2πrμ₀/I");
+Q("BS","If the distance from a long straight current-carrying wire is doubled, the magnetic field becomes:","Half","One quarter","Double","Unchanged");
+Q("BS","If the current in a long straight wire is doubled at a fixed distance, the magnetic field becomes:","Double","Half","One quarter","Unchanged");
+Q("BS","Ampere's law relates the magnetic field around a closed loop to:","The electric current passing through the loop","The charge on the loop","The resistance of the loop","The temperature of the loop");
+Q("BS","Ampere's law is written mathematically as:","∮B·dl = μ₀I","∮B·dl = I/μ₀","∮B·dl = μ₀/I","∮B·dl = 0 always");
+Q("BS","In Ampere's law, the current I is the:","Total current enclosed by the path","Current outside the path","Current in the smallest wire only","Alternating current only");
+Q("BS","Ampere's law is one of the four:","Maxwell's equations","Kirchhoff's laws","Newton's laws of motion","Laws of thermodynamics");
+Q("BS","Ampere's law is particularly useful for calculating magnetic fields in situations with:","High symmetry","No current","Only permanent magnets","Zero resistance");
+Q("BS","Applying Ampere's law to a long straight wire gives B(2πr) equal to:","μ₀I","μ₀I/2π","2πr/μ₀I","μ₀/I");
+Q("BS","The magnetic field inside a long solenoid is:","B = μ₀nI","B = μ₀I/(2πr)","B = μ₀NI/(2r)","B = I/(μ₀n)");
+Q("BS","In the solenoid formula B = μ₀nI, n is the:","Number of turns per unit length","Total number of turns","Number of layers","Number of poles");
+Q("BS","The magnetic field of a toroid at radius r is:","B = μ₀NI/(2πr)","B = μ₀nI","B = μ₀I/(2πr)","B = μ₀NI/(2r)");
+Q("BS","In the toroid formula, N is the:","Total number of turns","Number of turns per unit length","Number of poles","Number of layers");
+Q("BS","The magnetic field 0.1 m from a long straight wire carrying 5 A is:","1 × 10⁻⁵ T","1 × 10⁻⁷ T","6.3 × 10⁻⁶ T","5 × 10⁻⁶ T","B = μ₀I/(2πr) = (4π×10⁻⁷)(5)/(2π × 0.1) = 1 × 10⁻⁵ T.");
+Q("BS","The magnetic field 2 cm from a long straight wire carrying 10 A is:","1 × 10⁻⁴ T","1 × 10⁻⁶ T","2 × 10⁻⁴ T","5 × 10⁻⁵ T");
+Q("BS","A circular coil has 10 turns, radius 0.1 m and carries 2 A. The magnetic field at its centre is approximately:","1.26 × 10⁻⁴ T","1.26 × 10⁻⁶ T","6.3 × 10⁻⁵ T","2.5 × 10⁻⁴ T","B = μ₀NI/(2r) = (4π×10⁻⁷)(10)(2)/(0.2) ≈ 1.26 × 10⁻⁴ T.");
+Q("BS","A single circular loop of radius 0.05 m carries 1 A. The magnetic field at its centre is approximately:","1.26 × 10⁻⁵ T","1.26 × 10⁻⁷ T","6.3 × 10⁻⁶ T","2.5 × 10⁻⁵ T");
+Q("BS","A solenoid has 1000 turns per metre and carries 2 A. The magnetic field inside it is approximately:","2.5 × 10⁻³ T","2.5 × 10⁻⁶ T","1.26 × 10⁻³ T","4 × 10⁻³ T","B = μ₀nI = (4π×10⁻⁷)(1000)(2) ≈ 2.5 × 10⁻³ T.");
+Q("BS","The Biot–Savart law can be used to find the total field of a whole conductor by:","Integrating the contributions dB from all current elements","Averaging the currents","Multiplying by the resistance","Subtracting the smallest element");
+Q("BS","In the Biot–Savart law for the field at a point P, r represents:","The displacement vector from the current element to P","The resistance of the wire","The radius of the Earth","The resistivity of the wire");
+Q("BS","The Biot–Savart law applies to magnetic fields produced by:","Moving charges or electric current","Stationary charges only","Gravitational masses","Insulators");
 
-function toast(msg){
-  const t = $("toast");
-  t.textContent = msg;
-  t.classList.add("show");
-  clearTimeout(t._t);
-  t._t = setTimeout(()=>t.classList.remove("show"),2500);
-}
+/* ---------- EX: Extras from the topic list ---------- */
+Q("EX","Gauss's law relates the electric flux through a closed surface to:","The net charge enclosed by the surface","The charge outside the surface","The area of the surface only","The resistance of the surface");
+Q("EX","Gauss's law states that the total electric flux through a closed surface is:","Q_enclosed/ε₀","Q_enclosed × ε₀","ε₀/Q_enclosed","Zero always");
+Q("EX","The net electric flux through a closed surface that encloses no net charge is:","Zero","Positive","Negative","Infinite");
+Q("EX","The energy stored in a charged capacitor is:","½CV²","CV²","½C/V²","C/(2V)");
+Q("EX","A 10 μF capacitor is charged to 100 V. The energy stored is:","0.05 J","0.5 J","1 J","0.001 J","U = ½CV² = ½(10×10⁻⁶)(100)² = 0.05 J.");
+Q("EX","The capacitance of a parallel-plate capacitor with vacuum between plates is:","C = ε₀A/d","C = ε₀d/A","C = Ad/ε₀","C = ε₀/(Ad)");
+Q("EX","Two capacitors of 2 μF and 3 μF are connected in parallel. The equivalent capacitance is:","5 μF","1.2 μF","6 μF","0.83 μF");
+Q("EX","Two capacitors of 6 μF and 3 μF are connected in series. The equivalent capacitance is:","2 μF","9 μF","4.5 μF","18 μF");
+Q("EX","Inserting a dielectric between the plates of a capacitor (charge source disconnected or not) generally:","Increases its capacitance","Decreases its capacitance","Leaves its capacitance unchanged","Reduces it to zero");
+Q("EX","The energy density (energy per unit volume) stored in an electric field E in vacuum is:","½ε₀E²","ε₀E²/E","½E/ε₀","ε₀E");
+Q("EX","When capacitors are connected in series, the charge on each capacitor is:","The same","Different for each capacitor","Zero","Divided by the number of capacitors");
 
-function showModal(title,msg,onConfirm){
-  $("modalTitle").textContent = title;
-  $("modalMsg").textContent = msg;
-  $("modalOverlay").classList.remove("hidden");
-  $("modalConfirmBtn").onclick = ()=>{closeModal(); if(onConfirm) onConfirm();};
-}
-function closeModal(){ $("modalOverlay").classList.add("hidden"); }
 
-/* ---------- NAVIGATION ---------- */
-function goTo(view){
-  currentView = view;
-  document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-  $("view-"+view).classList.add("active");
-  document.querySelectorAll("#navMenu button").forEach(b=>{
-    b.classList.toggle("active", b.getAttribute("data-view")===view);
-  });
-  if(view==="dashboard") renderDashboard();
-  if(view==="study") renderStudy();
-  if(view==="results") renderResults();
-  if(view==="progress") renderProgress();
-  window.scrollTo({top:0,behavior:"smooth"});
-  $("navMenu").classList.remove("open");
-}
+const T={
+  FN:"Forces in Nature", ES:"Electrostatics & Charging", CL:"Coulomb's Law", EF:"Electric Field",
+  EP:"Electric Potential", CA:"Capacitors", DP:"Electric Dipole",
+  CI:"Conductors, Insulators & Bands", CU:"Current & Drift Velocity", VP:"Voltage, P.D. & EMF",
+  RS:"Resistance & Ohm's Law", SP:"Series & Parallel", PW:"Power & Energy", KL:"Kirchhoff's Laws",
+  LF:"Lorentz Force", BS:"Biot-Savart & Ampere", EX:"Extras: Gauss & Field Energy"
+};
+const app=document.getElementById('app');
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const LET=['A','B','C','D'];
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const mk=b=>({b:b,opts:shuf(b.o.map((t,i)=>({t:t,ok:i===0}))),pick:null});
+BANK.forEach(b=>{b.fixed=shuf(b.o.map((t,i)=>({t:t,ok:i===0})));});
 
-/* ---------- STUDY MODE ---------- */
-const FORMULAS = [
-  {name:"Coulomb's Law",formula:"F = K·Q₁Q₂ / r²",desc:"Force between two point charges. K = 9×10⁹ N·m²/C², Q in coulombs (C), r in metres (m), F in newtons (N)."},
-  {name:"Electric Field Intensity",formula:"E = F / Q",desc:"Force per unit charge. E in N/C (or V/m), F in N, Q in C."},
-  {name:"Point Charge Field",formula:"E = Q / (4πε₀r²)",desc:"Electric field due to a point charge Q at distance r. ε₀ is the permittivity of free space."},
-  {name:"Electric Potential",formula:"V = W / Q",desc:"Work done per unit charge. V in volts (V), W in joules (J), Q in coulombs (C)."},
-  {name:"Coulomb Potential",formula:"V = Q / (4πε₀r)",desc:"Electric potential due to a point charge Q at distance r. V in volts."},
-  {name:"Capacitance",formula:"C = Q / V",desc:"Charge stored per unit voltage. C in farads (F), Q in coulombs, V in volts."},
-  {name:"Charge–Voltage Relation",formula:"Q = C·V",desc:"Charge stored equals capacitance times voltage."},
-  {name:"Electric Dipole Moment",formula:"p = q·d",desc:"Product of charge magnitude q and separation d. p in C·m, d is a vector."}
-];
+let sel=new Set(Object.keys(T));
+let count=20;
+let Z=null;
 
-const DEFINITIONS = [
-  {name:"Gravity",def:"A fundamental force of attraction between two objects that have mass or energy."},
-  {name:"Weak Force",def:"A fundamental force responsible for certain types of particle decay and plays a role in nuclear fusion that powers the sun."},
-  {name:"Electromagnetic Force",def:"The Lorentz force, composed of electric and magnetic forces; acts between charged particles."},
-  {name:"Strong Nuclear Force",def:"The strongest fundamental force, holding the quarks together that make up protons and neutrons."},
-  {name:"Electrostatics",def:"The study of electromagnetic phenomena that occur when there are no moving charges."},
-  {name:"Electric Charge",def:"A physical property of matter causing it to experience a force in an electric field; measured in coulombs."},
-  {name:"Electric Field",def:"A region of space in which an electric force is obtained on a charge."},
-  {name:"Electric Potential",def:"The work needed to move a unit positive charge from a reference point (usually infinity) to a specific point in the field."},
-  {name:"Capacitor",def:"A device used to store electric charge, made of two parallel metal plates separated by a dielectric."},
-  {name:"Capacitance",def:"The ability of a capacitor to store charge; C = Q/V, measured in farads."},
-  {name:"Electric Dipole",def:"A system of two equal but opposite charges separated by a small distance."},
-  {name:"Electric Dipole Moment",def:"A vector quantity p = qd, pointing from the negative to the positive charge."}
-];
+document.getElementById('sub').textContent=
+  BANK.length+' multiple-choice questions across '+Object.keys(T).length+' topics, built from your PHY 102 notes.';
 
-function renderStudy(){
-  $("formulasList").innerHTML = FORMULAS.map(f=>
-    `<div class="formula-card"><h4>${f.name}</h4><span class="formula-code">${f.formula}</span><p>${f.desc}</p></div>`
-  ).join("");
-  $("defsList").innerHTML = DEFINITIONS.map(d=>
-    `<div class="def-card"><h4>${d.name}</h4><p>${d.def}</p></div>`
-  ).join("");
-}
-
-/* ---------- DASHBOARD ---------- */
-function loadProgress(){
-  try{
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultProgress();
-  }catch(e){ return defaultProgress(); }
-}
-function defaultProgress(){
-  return {
-    quizzesCompleted:0, totalQuestions:0, correct:0, incorrect:0,
-    bestScore:0, lastScore:0, categoryPerf:{}, learningDone:0, totalPossible:0
+function home(){
+  const c={};BANK.forEach(b=>{c[b.t]=(c[b.t]||0)+1;});
+  const pool=BANK.filter(b=>sel.has(b.t)).length;
+  app.innerHTML=
+   '<section class="card"><h2>Topics</h2><div class="chips">'+
+   Object.keys(T).map(k=>'<button class="chip'+(sel.has(k)?' on':'')+'" data-k="'+k+'">'+esc(T[k])+'<span>'+(c[k]||0)+'</span></button>').join('')+
+   '</div><div class="row" style="margin-top:10px"><button class="link" id="all">Select all</button><button class="link" id="none">Clear</button></div></section>'+
+   '<section class="card"><h2>Questions per round</h2><div class="chips">'+
+   [10,20,30,50,'All'].map(n=>'<button class="chip'+(String(count)===String(n)?' on':'')+'" data-n="'+n+'">'+n+'</button>').join('')+
+   '</div><p class="mute">'+pool+' question'+(pool===1?'':'s')+' in the selected topics. Options are shuffled every time.</p>'+
+   '<div class="row"><button class="btn" id="start"'+(pool?'':' disabled')+'>Start practice</button>'+
+   '<button class="btn ghost" id="browse"'+(pool?'':' disabled')+'>Browse with answers</button></div></section>';
+  app.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{const k=b.dataset.k;sel.has(k)?sel.delete(k):sel.add(k);home();});
+  app.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{count=b.dataset.n==='All'?'All':+b.dataset.n;home();});
+  document.getElementById('all').onclick=()=>{sel=new Set(Object.keys(T));home();};
+  document.getElementById('none').onclick=()=>{sel=new Set();home();};
+  document.getElementById('start').onclick=()=>{
+    let p=shuf(BANK.filter(b=>sel.has(b.t)));
+    if(count!=='All')p=p.slice(0,count);
+    begin(p);
   };
-}
-function saveProgress(p){ localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); }
-
-function renderDashboard(){
-  const p = loadProgress();
-  const correct = p.correct, total = p.totalQuestions;
-  const acc = total>0 ? Math.round(correct/total*100) : 0;
-  const avg = p.quizzesCompleted>0 ? Math.round(p.bestScore) : 0;
-  const overallPct = p.totalPossible>0 ? Math.round(p.learningDone/p.totalPossible*100) : 0;
-  $("dashStats").innerHTML = `
-    <div class="stat accent"><div class="num">${p.quizzesCompleted}</div><div class="lbl">Quizzes Completed</div></div>
-    <div class="stat"><div class="num">${total}</div><div class="lbl">Questions Answered</div></div>
-    <div class="stat accent"><div class="num">${correct}</div><div class="lbl">Correct Answers</div></div>
-    <div class="stat"><div class="num">${acc}%</div><div class="lbl">Accuracy</div></div>
-    <div class="stat accent"><div class="num">${p.bestScore}%</div><div class="lbl">Best Score</div></div>
-    <div class="stat"><div class="num">${avg}%</div><div class="lbl">Average Score</div></div>`;
-  $("dashOverallPct").textContent = overallPct+"%";
-  $("dashBar").style.width = overallPct+"%";
+  document.getElementById('browse').onclick=browse;
+  window.scrollTo(0,0);
 }
 
-/* ---------- QUIZ SETUP ---------- */
-function renderSetup(){
-  // categories
-  const cats = [CAT_SELECT].concat(CATEGORIES.map(c=>c.name));
-  $("categoryGrid").innerHTML = cats.map(cat=>{
-    const isAll = cat===CAT_SELECT;
-    const count = isAll ? QUESTION_BANK.length : QUESTION_BANK.filter(q=>q.category===cat).length;
-    const icon = isAll ? "&#128221;" : (CATEGORIES.find(c=>c.name===cat)||{}).icon || "&#10004;";
-    return `<div class="cat-card ${selectedCategory===cat?'selected':''}" onclick="selectCategory('${cat.replace(/'/g,"\\'")}')">
-      <div class="icon">${icon}</div><h3>${cat}</h3><p>${isAll?"All PHY 102 topics":"Questions from this topic"}</p>
-      <div class="count">${count} Qs</div></div>`;
-  }).join("");
+function begin(list){Z={qs:list.map(mk),i:0,score:0,done:false};show();}
 
-  // difficulty
-  const diffs = [["easy","Easy"],["medium","Medium"],["hard","Hard"],["mixed","Mixed"]];
-  $("diffSeg").innerHTML = diffs.map(([v,l])=>`<button data-d="${v}" class="${selectedDifficulty===v?'selected':''}" onclick="selectDiff('${v}')">${l}</button>`).join("");
-
-  // count
-  const counts = [10,20,30,50,100];
-  $("countSeg").innerHTML = counts.map(c=>`<button data-c="${c}" class="${selectedCount===c?'selected':''}" onclick="selectCount(${c})">${c}</button>`).join("") +
-    `<button data-c="all" class="${selectedCount==='all'?'selected':''}" onclick="selectCount('all')">Practice All</button>`;
+function show(){
+  if(Z.i>=Z.qs.length){return results();}
+  const it=Z.qs[Z.i], n=Z.qs.length;
+  app.innerHTML=
+   '<div class="top"><button class="link" id="quit">Quit to menu</button></div>'+
+   '<div class="page"><div class="meta"><span>'+esc(T[it.b.t])+'</span><span>Question '+(Z.i+1)+' of '+n+' · Score '+Z.score+'</span></div>'+
+   '<div class="bar"><i style="width:'+Math.round(Z.i/n*100)+'%"></i></div>'+
+   '<p class="q">'+esc(it.b.q)+'</p><div class="opts" id="opts">'+
+   it.opts.map((o,k)=>'<button class="opt" data-k="'+k+'"><b>'+LET[k]+'</b><span>'+esc(o.t)+'</span></button>').join('')+
+   '</div><div id="fb"></div><div class="row" id="nx"></div></div>';
+  document.getElementById('quit').onclick=home;
+  app.querySelectorAll('.opt').forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+  window.scrollTo(0,0);
 }
 
-function selectCategory(cat){ selectedCategory = cat; renderSetup(); }
-function selectDiff(d){ selectedDifficulty = d; renderSetup(); }
-function selectCount(c){ selectedCount = c; renderSetup(); }
-function resetSetup(){ selectedCategory="All Categories"; selectedDifficulty="mixed"; selectedCount=10; selectedMode="learning"; renderSetup(); setModeButtons(); }
-
-/* ---------- MODE SELECTION ---------- */
-function setModeButtons(){
-  document.querySelectorAll("#modeSeg button").forEach(b=>{
-    b.classList.toggle("selected", b.getAttribute("data-mode")===selectedMode);
+function pick(k){
+  const it=Z.qs[Z.i]; if(it.pick!==null)return;
+  it.pick=k;
+  const right=it.opts[k].ok; if(right)Z.score++;
+  const btns=app.querySelectorAll('.opt');
+  btns.forEach((b,j)=>{
+    b.disabled=true;
+    if(it.opts[j].ok)b.classList.add('ok');
+    else if(j===k)b.classList.add('no');
+    else b.classList.add('dim');
   });
+  const ans=it.opts.findIndex(o=>o.ok);
+  document.getElementById('fb').innerHTML='<div class="fb"><strong>'+(right?'Correct.':'Not quite. The answer is '+LET[ans]+'.')+'</strong>'+
+    (it.b.e?esc(it.b.e):'')+'</div>';
+  const last=Z.i===Z.qs.length-1;
+  document.getElementById('nx').innerHTML='<button class="btn" id="next">'+(last?'See results':'Next question')+'</button>';
+  const nx=document.getElementById('next');
+  nx.onclick=()=>{Z.i++;show();};
+  nx.focus({preventScroll:false});
 }
-document.addEventListener("click",function(e){
-  const m = e.target.closest("#modeSeg button");
-  if(m){ selectedMode = m.getAttribute("data-mode"); setModeButtons(); }
+
+function results(){
+  const n=Z.qs.length, pct=Math.round(Z.score/n*100);
+  const missed=Z.qs.filter(x=>!x.opts[x.pick].ok);
+  app.innerHTML=
+   '<section class="card"><h2>Round complete</h2><div class="score">'+Z.score+' / '+n+'</div>'+
+   '<p class="mute" style="margin-top:0">'+pct+'% correct</p>'+
+   '<div class="row"><button class="btn" id="again">New round</button>'+
+   (missed.length?'<button class="btn ghost" id="retry">Retry the '+missed.length+' missed</button>':'')+
+   '<button class="link" id="home">Back to menu</button></div></section>'+
+   (missed.length?'<section class="card"><h2>Review of missed questions</h2><ul class="miss">'+
+   missed.map(x=>'<li>'+esc(x.b.q)+'<small>Your answer: '+esc(x.opts[x.pick].t)+'</small><small class="ans">Correct: '+esc(x.b.o[0])+'</small>'+
+   (x.b.e?'<small>'+esc(x.b.e)+'</small>':'')+'</li>').join('')+'</ul></section>':'');
+  document.getElementById('again').onclick=()=>{
+    let p=shuf(BANK.filter(b=>sel.has(b.t)));
+    if(count!=='All')p=p.slice(0,count);
+    begin(p);
+  };
+  const r=document.getElementById('retry'); if(r)r.onclick=()=>begin(shuf(missed.map(x=>x.b)));
+  document.getElementById('home').onclick=home;
+  window.scrollTo(0,0);
+}
+
+function browse(){
+  let h='<div class="top"><button class="link" id="back">Back to menu</button><button class="link" onclick="window.print()">Print</button></div>';
+  Object.keys(T).filter(k=>sel.has(k)).forEach(k=>{
+    const list=BANK.filter(b=>b.t===k);
+    h+='<h3>'+esc(T[k])+' ('+list.length+')</h3>';
+    list.forEach((b,i)=>{
+      h+='<div class="bq"><p>'+(i+1)+'. '+esc(b.q)+'</p><ol>'+
+        b.fixed.map(o=>'<li'+(o.ok?' class="ok"':'')+'>'+esc(o.t)+(o.ok?' ✓':'')+'</li>').join('')+'</ol>'+
+        (b.e?'<em>'+esc(b.e)+'</em>':'')+'</div>';
+    });
+  });
+  app.innerHTML=h;
+  document.getElementById('back').onclick=home;
+  window.scrollTo(0,0);
+}
+
+document.addEventListener('keydown',e=>{
+  if(!Z||!document.getElementById('opts'))return;
+  const k='abcd'.indexOf(e.key.toLowerCase());
+  if(k>-1&&e.key.length===1)pick(k);
 });
 
-/* ---------- BUILD QUIZ ---------- */
-function buildQuiz(){
-  let pool = QUESTION_BANK;
-  if(selectedCategory !== CAT_SELECT){
-    pool = pool.filter(q=>q.category===selectedCategory);
-  }
-  if(selectedDifficulty !== "mixed"){
-    pool = pool.filter(q=>q.difficulty===selectedDifficulty);
-  }
-  let shuffled = shuffle(pool);
-  if(selectedCount === "all"){
-    activeQuestions = shuffled;
-  } else {
-    activeQuestions = shuffled.slice(0, Math.min(selectedCount, shuffled.length));
-  }
-}
-
-/* ---------- RANDOMIZE ANSWERS ---------- */
-function randomizeAnswers(q){
-  const idx = q.answer;
-  let opts, newAns;
-  if(q.type === "mcq" || q.type === "calculation"){
-    const pairs = q.options.map((opt,i)=>({opt, i}));
-    const sh = shuffle(pairs);
-    opts = sh.map(p=>p.opt);
-    newAns = sh.findIndex(p=>p.i===idx);
-  } else if(q.type === "tf"){
-    opts = ["True","False"];
-    newAns = q.answer === true ? 0 : 1;
-  }
-  return {...q, options: opts, answer: newAns};
-}
-
-/* ---------- START QUIZ ---------- */
-function startQuiz(){
-  buildQuiz();
-  if(activeQuestions.length===0){
-    toast("No questions match your selection. Try another category.");
-    return;
-  }
-  // randomize each question's answers
-  activeQuestions = activeQuestions.map(randomizeAnswers);
-  currentIndex = 0;
-  userAnswers = new Array(activeQuestions.length).fill(null);
-  markedForReview = [];
-  quizStarted = true;
-  timeUsed = 0;
-  lastResult = null;
-
-  goTo("quizactive");
-  renderQuizTopbar();
-  renderPalette();
-  renderQuestion();
-  if(selectedMode === "exam"){
-    $("timer").classList.remove("hidden");
-    startTimer();
-  } else {
-    $("timer").classList.add("hidden");
-    stopTimer();
-  }
-}
-
-function startTimer(){
-  stopTimer();
-  timerInterval = setInterval(()=>{
-    timeUsed++;
-    const m = String(Math.floor(timeUsed/60)).padStart(2,"0");
-    const s = String(timeUsed%60).padStart(2,"0");
-    const t = $("timer");
-    t.innerHTML = "&#9201; "+m+":"+s;
-    t.classList.toggle("warn", timeUsed > 45*60);
-  },1000);
-}
-function stopTimer(){ if(timerInterval){ clearInterval(timerInterval); timerInterval=null; } }
-function formatTime(sec){
-  const m = String(Math.floor(sec/60)).padStart(2,"0");
-  const s = String(sec%60).padStart(2,"0");
-  return m+":"+s;
-}
-
-function renderQuizTopbar(){
-  $("qnumBadge").textContent = "Question "+(currentIndex+1)+" / "+activeQuestions.length;
-  const mb = $("modeBadge");
-  mb.textContent = selectedMode.toUpperCase();
-  mb.className = "mode-badge "+(selectedMode==="exam"?"exam":"learning");
-  if(selectedMode==="learning"){ $("submitBtn").classList.add("hidden"); } else { $("submitBtn").classList.remove("hidden"); }
-  updateProgressText();
-}
-
-function updateProgressText(){
-  const answered = userAnswers.filter(a=>a!==null).length;
-  $("progressText").textContent = answered+" / "+activeQuestions.length+" answered";
-}
-
-/* ---------- PALETTE ---------- */
-function renderPalette(){
-  $("palette").innerHTML = `
-    <div style="display:flex;gap:8px;flex-wrap:wrap;">${activeQuestions.map((q,i)=>{
-      let cls = "pal-num";
-      if(i===currentIndex) cls += " cur";
-      if(markedForReview.includes(i)) cls += " marked";
-      if(userAnswers[i]!==null) cls += " answered";
-      return `<button class="${cls}" onclick="jumpTo(${i})">${i+1}</button>`;
-    }).join("")}
-    </div>
-    <div class="pal-legend">
-      <span><span class="legend-dot" style="background:var(--green)"></span>Answered</span>
-      <span><span class="legend-dot" style="background:var(--amber)"></span>Marked</span>
-      <span><span class="legend-dot" style="background:#eef2f7;border:1px solid #cbd5e1"></span>Unanswered</span>
-    </div>`;
-}
-
-function jumpTo(i){
-  if(i>=0 && i<activeQuestions.length){ currentIndex=i; renderQuestion(); }
-}
-
-/* ---------- RENDER QUESTION ---------- */
-function renderQuestion(){
-  const q = activeQuestions[currentIndex];
-  const num = currentIndex+1;
-  const diffCls = q.difficulty;
-  const typeLabel = q.type==="calculation" ? "Calculation" : (q.type==="tf" ? "True/False" : "Multiple Choice");
-  const answered = userAnswers[currentIndex] !== null;
-
-  let optsHtml = "";
-  if(q.type==="tf"){
-    optsHtml = q.options.map((opt,i)=>{
-      const letter = opt==="True"?"T":"F";
-      let cls = "opt";
-      if(selectedMode==="learning"){
-        if(answered){
-          if(i===q.answer) cls += " correct";
-          else if(userAnswers[currentIndex]===i) cls += " wrong";
-        }
-      } else {
-        if(userAnswers[currentIndex]===i) cls += " selected";
-      }
-      return `<button class="${cls}" onclick="selectAnswer(${i})" ${answered&&selectedMode==="learning"?"disabled":""}>
-        <span class="letter">${letter}</span><span>${opt}</span></button>`;
-    }).join("");
-  } else {
-    optsHtml = q.options.map((opt,i)=>{
-      const letter = "ABCD"[i];
-      let cls = "opt";
-      if(selectedMode==="learning"){
-        if(answered){
-          if(i===q.answer) cls += " correct";
-          else if(userAnswers[currentIndex]===i) cls += " wrong";
-        }
-      } else {
-        if(userAnswers[currentIndex]===i) cls += " selected";
-      }
-      return `<button class="${cls}" onclick="selectAnswer(${i})" ${answered&&selectedMode==="learning"?"disabled":""}>
-        <span class="letter">${letter}</span><span>${opt}</span></button>`;
-    }).join("");
-  }
-
-  let feedbackHtml = "";
-  if(selectedMode==="learning" && answered){
-    const correct = userAnswers[currentIndex]===q.answer;
-    const correctLetter = "ABCD"[q.answer];
-    feedbackHtml = `<div class="feedback ${correct?'correct':'wrong'}">
-      <h4>${correct?"&#9989; Correct!":"&#10060; Incorrect"}</h4>
-      <p><strong>Correct Answer: ${correctLetter}</strong> — ${q.options[q.answer]}</p>
-      <p>${q.explanation}</p>
-      ${q.formula?`<div class="f-formula">${q.formula}</div>`:""}
-      ${q.solution?`<div class="note"><strong>Solution:</strong> ${q.solution}</div>`:""}
-    </div>`;
-  }
-
-  const markBtn = $("markBtn");
-  markBtn.textContent = markedForReview.includes(currentIndex) ? "&#9873; Marked for Review" : "&#9873; Mark for Review";
-  markBtn.style.background = markedForReview.includes(currentIndex) ? "var(--amber)" : "#fffbeb";
-  markBtn.style.color = markedForReview.includes(currentIndex) ? "#fff" : "#b45309";
-
-  $("questionCard").innerHTML = `
-    <div class="q-meta">
-      <span class="q-tag category">${q.category}</span>
-      <span class="q-tag ${diffCls}">${diffCls.charAt(0).toUpperCase()+diffCls.slice(1)}</span>
-      <span class="q-tag type">${typeLabel}</span>
-      <span style="margin-left:auto;color:var(--gray);font-size:.8rem;font-weight:700;">Question ${num}/${activeQuestions.length}</span>
-    </div>
-    <div class="question-text">${num}. ${q.question}</div>
-    <div class="opt-list">${optsHtml}</div>
-    ${feedbackHtml}`;
-
-  $("prevBtn").disabled = currentIndex===0;
-  const nextLbl = currentIndex===activeQuestions.length-1 ? "Finish" : "Next";
-  $("nextBtn").innerHTML = (currentIndex===activeQuestions.length-1?"Finish":"Next")+" &#8594;";
-
-  updateProgressText();
-  renderPalette();
-}
-
-/* ---------- ANSWER SELECTION ---------- */
-function selectAnswer(i){
-  if(selectedMode==="learning"){
-    if(userAnswers[currentIndex]!==null) return;
-    userAnswers[currentIndex]=i;
-    renderQuestion();
-    // auto-advance
-    setTimeout(()=>{ if(currentIndex<activeQuestions.length-1) nextQuestion(); },1400);
-  } else {
-    userAnswers[currentIndex]=i;
-    renderQuestion();
-  }
-}
-
-function prevQuestion(){ if(currentIndex>0){ currentIndex--; renderQuestion(); } }
-function nextQuestion(){
-  if(currentIndex<activeQuestions.length-1){
-    currentIndex++;
-    renderQuestion();
-  } else {
-    if(selectedMode==="exam"){ submitExam(); }
-    else { toast("You've reached the end of the quiz."); }
-  }
-}
-
-function markForReview(){
-  const idx = markedForReview.indexOf(currentIndex);
-  if(idx>=0){ markedForReview.splice(idx,1); } else { markedForReview.push(currentIndex); }
-  renderQuestion();
-}
-
-/* ---------- SUBMIT EXAM ---------- */
-function submitExam(){
-  if(selectedMode!=="exam") return;
-  const unanswered = userAnswers.filter(a=>a===null).length;
-  showModal("Submit Exam?",
-    unanswered>0 ? `You have ${unanswered} unanswered question(s). Submit anyway?` : "Submit your exam and see your score?",
-    ()=>{ finishQuiz(); });
-}
-
-function finishQuiz(){
-  stopTimer();
-  let correct=0, wrong=0, skipped=0;
-  activeQuestions.forEach((q,i)=>{
-    if(userAnswers[i]===null){ skipped++; }
-    else if(userAnswers[i]===q.answer){ correct++; }
-    else { wrong++; }
-  });
-  const attempted = correct+wrong;
-  const score = Math.round(correct/activeQuestions.length*100);
-  const pct = correct/activeQuestions.length*100;
-
-  lastResult = {
-    questions: activeQuestions, answers: userAnswers.slice(),
-    correct, wrong, skipped, attempted,
-    total: activeQuestions.length, score, pct,
-    time: timeUsed, mode: selectedMode, category: selectedCategory
-  };
-
-  // update progress
-  const prog = loadProgress();
-  prog.quizzesCompleted++;
-  prog.totalQuestions += attempted;
-  prog.correct += correct;
-  prog.incorrect += wrong;
-  prog.learningDone += attempted;
-  prog.totalPossible += activeQuestions.length;
-  if(score>prog.bestScore) prog.bestScore = score;
-  prog.lastScore = score;
-  // category perf
-  const catMap = {};
-  activeQuestions.forEach((q,i)=>{
-    if(!catMap[q.category]) catMap[q.category]={c:0,w:0};
-    if(userAnswers[i]===q.answer) catMap[q.category].c++;
-    else if(userAnswers[i]!==null) catMap[q.category].w++;
-  });
-  Object.keys(catMap).forEach(cat=>{
-    if(!prog.categoryPerf[cat]) prog.categoryPerf[cat]={c:0,w:0};
-    prog.categoryPerf[cat].c += catMap[cat].c;
-    prog.categoryPerf[cat].w += catMap[cat].w;
-  });
-  saveProgress(prog);
-
-  renderResults();
-  goTo("results");
-}
-
-/* ---------- RESULTS ---------- */
-function renderResults(){
-  if(!lastResult){ $("resultsContent").innerHTML = `<div class="card"><h3 class="card-title">No Results Yet</h3><p class="card-sub">Complete a quiz to see your results here.</p><button class="btn btn-primary" onclick="goTo('quiz')">Start a Quiz</button></div>`; return; }
-  const r = lastResult;
-  let level, cls;
-  if(r.pct>=90){level="Excellent";cls="excellent";}
-  else if(r.pct>=75){level="Very Good";cls="verygood";}
-  else if(r.pct>=60){level="Good";cls="good";}
-  else if(r.pct>=50){level="Needs Improvement";cls="needs";}
-  else {level="More Practice Needed";cls="practice";}
-
-  $("resultsContent").innerHTML = `
-  <div class="result-hero">
-    <h2 style="margin-bottom:18px;">&#127891; Your Result</h2>
-    <div class="result-score-wrap">
-      <div class="score-ring" style="--pct:${r.pct}%">
-        <div class="inner"><div class="pct">${r.score}%</div><div class="sc">${r.correct} / ${r.total}</div></div>
-      </div>
-      <div style="text-align:left;">
-        <div class="result-level ${cls}">${level}</div>
-        <p style="color:#cfe0ff;font-size:.95rem;">${r.mode==="exam"?"Exam Mode":"Learning Mode"} &middot; ${r.category}</p>
-      </div>
-    </div>
-    <div class="result-stats">
-      <div class="rs"><div class="n" style="color:#6ee7b7;">${r.correct}</div><div class="l">Correct</div></div>
-      <div class="rs"><div class="n" style="color:#fca5a5;">${r.wrong}</div><div class="l">Wrong</div></div>
-      <div class="rs"><div class="n" style="color:#fcd34d;">${r.skipped}</div><div class="l">Skipped</div></div>
-      <div class="rs"><div class="n">${r.attempted}</div><div class="l">Attempted</div></div>
-      <div class="rs"><div class="n">${r.total}</div><div class="l">Total</div></div>
-      <div class="rs"><div class="n">${formatTime(r.time)}</div><div class="l">Time Used</div></div>
-    </div>
-  </div>
-  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;">
-    <button class="btn btn-primary" onclick="showReview()">&#128269; Review Answers</button>
-    <button class="btn btn-outline" onclick="goTo('quiz')">&#128203; New Quiz</button>
-    <button class="btn btn-dark" onclick="goTo('dashboard')">&#127968; Dashboard</button>
-  </div>`;
-}
-
-function showReview(){ renderReview(); goTo("review"); }
-
-function renderReview(){
-  const r = lastResult;
-  if(!r){ $("reviewContent").innerHTML="<p>No review available.</p>"; return; }
-  $("reviewContent").innerHTML = r.questions.map((q,i)=>{
-    const stu = r.answers[i];
-    let state, stateLabel;
-    if(stu===null){ state="unanswered"; stateLabel="Unanswered"; }
-    else if(stu===q.answer){ state="correct"; stateLabel="Correct"; }
-    else { state="incorrect"; stateLabel="Incorrect"; }
-    const stuLetter = stu===null ? "—" : "ABCD"[stu];
-    const corrLetter = "ABCD"[q.answer];
-    const stuText = stu===null ? "Not answered" : q.options[stu];
-    return `<div class="review-item ${state}">
-      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
-        <span class="q-tag category">${q.category}</span>
-        <span class="q-tag ${state==='correct'?'easy':(state==='incorrect'?'hard':'medium')}">${stateLabel}</span>
-      </div>
-      <h4>${i+1}. ${q.question}</h4>
-      <div class="review-answer student ${state==='correct'?'correct':'wrong'}"><strong>Your answer:</strong> ${stuLetter}. ${stuText}</div>
-      <div class="review-answer correct-ans"><strong>Correct answer:</strong> ${corrLetter}. ${q.options[q.answer]}</div>
-      <p style="margin:8px 0;color:#334155;font-size:.92rem;">${q.explanation}</p>
-      ${q.formula?`<div class="review-formula">${q.formula}</div>`:""}
-      ${q.solution?`<div style="margin-top:6px;font-size:.88rem;color:#475569;"><strong>Solution:</strong> ${q.solution}</div>`:""}
-    </div>`;
-  }).join("");
-}
-
-/* ---------- PROGRESS ---------- */
-function renderProgress(){
-  const p = loadProgress();
-  const acc = p.totalQuestions>0 ? Math.round(p.correct/p.totalQuestions*100) : 0;
-  const overallPct = p.totalPossible>0 ? Math.round(p.learningDone/p.totalPossible*100) : 0;
-  const avg = p.quizzesCompleted>0 ? Math.round(p.bestScore) : 0;
-
-  let catRows = Object.keys(p.categoryPerf).map(cat=>{
-    const d = p.categoryPerf[cat];
-    const total = d.c+d.w;
-    const pct = total>0 ? Math.round(d.c/total*100) : 0;
-    return `<tr><td>${cat}</td><td>${d.c}</td><td>${d.w}</td><td>${total}</td><td>${pct}%</td></tr>`;
-  }).join("") || `<tr><td colspan="5" style="text-align:center;color:var(--gray);">No category data yet.</td></tr>`;
-
-  $("progressContent").innerHTML = `
-    <div class="stats-grid">
-      <div class="stat accent"><div class="num">${p.quizzesCompleted}</div><div class="lbl">Quizzes</div></div>
-      <div class="stat"><div class="num">${p.totalQuestions}</div><div class="lbl">Answered</div></div>
-      <div class="stat accent"><div class="num">${p.correct}</div><div class="lbl">Correct</div></div>
-      <div class="stat"><div class="num">${p.incorrect}</div><div class="lbl">Incorrect</div></div>
-      <div class="stat accent"><div class="num">${acc}%</div><div class="lbl">Accuracy</div></div>
-      <div class="stat"><div class="num">${p.bestScore}%</div><div class="lbl">Best Score</div></div>
-      <div class="stat accent"><div class="num">${p.lastScore}%</div><div class="lbl">Last Score</div></div>
-      <div class="stat"><div class="num">${avg}%</div><div class="lbl">Average</div></div>
-    </div>
-    <div class="card">
-      <h3 class="card-title">&#128202; Overall Progress</h3>
-      <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><strong style="color:var(--navy)">Learning Progress</strong><strong style="color:var(--electric)">${overallPct}%</strong></div>
-      <div class="progress-bar"><div class="progress-fill" style="width:${overallPct}%"></div></div>
-    </div>
-    <div class="card">
-      <h3 class="card-title">&#128202; Category Performance</h3>
-      <table><thead><tr><th>Category</th><th>Correct</th><th>Wrong</th><th>Total</th><th>Accuracy</th></tr></thead><tbody>${catRows}</tbody></table>
-    </div>`;
-}
-
-function confirmResetProgress(){
-  showModal("Reset Progress?","This will delete all saved progress on this device. This cannot be undone.",()=>{
-    saveProgress(defaultProgress());
-    renderDashboard(); renderProgress();
-    toast("Progress reset.");
-  });
-}
-
-/* ---------- INIT ---------- */
-document.addEventListener("DOMContentLoaded",()=>{
-  renderSetup();
-  setModeButtons();
-  renderDashboard();
-  renderStudy();
-  renderResults();
-  renderProgress();
-  $("menuToggle").addEventListener("click",()=>$("navMenu").classList.toggle("open"));
-  // nav buttons
-  document.querySelectorAll("#navMenu button").forEach(b=>{
-    b.addEventListener("click",()=>goTo(b.getAttribute("data-view")));
-  });
-  // prevent accidental loss
-  window.addEventListener("beforeunload",(e)=>{
-    if(quizStarted && selectedMode==="exam" && !lastResult){
-      e.preventDefault(); e.returnValue="";
-    }
-  });
-});
-
+home();
 </script>
 </body>
 </html>
